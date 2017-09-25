@@ -5,11 +5,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 /**
- * Created by Brennan on 9/20/2017.
  */
 
 public class Teleop extends OpMode{
-private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
     private double power=1.0;
     private boolean uh=false;
     public void init(){
@@ -17,20 +15,20 @@ private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
         scarecrow=hardwareMap.dcMotor.get("frontright");
         tinman=hardwareMap.dcMotor.get("backleft");
         lion=hardwareMap.dcMotor.get("backright");
-        TheWickedWitchOfTheWest=hardwareMap.dcMotor.get("arm");
     }
 
     public void loop(){
-            wereofftoseethewizardthewonderfulwizardofoz();
             illgetyoumypretty();
 
     }
     public void wereofftoseethewizardthewonderfulwizardofoz()
     {
+        if(!um&&gamepad1.a){
         if(!uh&&gamepad1.a){
             power=1-(power-0.5);
         }
 
+        um=gamepad1.a;
         uh=gamepad1.a;
 
         if(gamepad1.dpad_up)
@@ -68,6 +66,7 @@ private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
 
         if(gamepad2.right_trigger > 0.2)
         {
+<<<<<<< HEAD
 
             TheWickedWitchOfTheWest.setPower(1);
         }
@@ -80,6 +79,16 @@ private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
         {
             TheWickedWitchOfTheWest.setPower(0);
 
+=======
+            thewickedwitchofthewest.setPower(1.0);
+        }
+        else if (gamepad2.left_trigger < -0.2)
+        {
+            thewickedwitchofthewest.setPower(-1.0);
+        }
+        else
+        {
+            thewickedwitchofthewest.setPower(0.0);
         }
 
     }
