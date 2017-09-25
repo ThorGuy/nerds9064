@@ -20,6 +20,10 @@ public class MotorTest extends OpMode {
         scarecrow.setPower(1);
         tinman.setPower(1);
         lion.setPower(1);
+        telemetry.addData("Dorothy Power", dorothy.getPower());
+        telemetry.addData("Scarecrow Power", scarecrow.getPower());
+        telemetry.addData("Tinman Power", tinman.getPower());
+        telemetry.addData("Lion Power", lion.getPower());
 
     }
 }
