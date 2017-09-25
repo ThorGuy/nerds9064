@@ -11,7 +11,11 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 public class Teleop extends OpMode{
 private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Could you possibly do camel-case for the long names?
     private double power=1.0;
+<<<<<<< HEAD
     private boolean thor=false;
+=======
+    private boolean uh=false;
+>>>>>>> d0957ce140879f514beeff3284e2a233ddddf671
     public void init(){
         dorothy=hardwareMap.dcMotor.get("frontleft");
         scarecrow=hardwareMap.dcMotor.get("frontright");
@@ -28,10 +32,12 @@ private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Cou
     public void wereofftoseethewizardthewonderfulwizardofoz()
     {
         if(!um&&gamepad1.a){
+        if(!uh&&gamepad1.a){
             power=1-(power-0.5);
         }
 
         um=gamepad1.a;
+        uh=gamepad1.a;
 
         if(gamepad1.dpad_up)
         {
