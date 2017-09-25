@@ -66,17 +66,17 @@ private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Cou
     public void illgetyoumypretty ()
     {
 
-        if(gamepad2.right_trigger > .2)
+        if(gamepad2.right_trigger > 0.2)
         {
-            thewickedwitchofthewest.setPower(1);
+            thewickedwitchofthewest.setPower(1.0);
         }
-        else if (gamepad2.left_trigger < -.2)
+        else if (gamepad2.left_trigger < -0.2)
         {
-            thewickedwitchofthewest.setPower(-1);
+            thewickedwitchofthewest.setPower(-1.0);
         }
         else
         {
-            thewickedwitchofthewest.setPower(0);
+            thewickedwitchofthewest.setPower(0.0);
         }
 
     }
