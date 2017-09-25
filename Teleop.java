@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
-private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Could you possibly do camel-case for the long names?
+private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
     private double power=1.0;
     private boolean um=false;
     public void init(){
@@ -17,11 +17,11 @@ private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Cou
         scarecrow=hardwareMap.dcMotor.get("frontright");
         tinman=hardwareMap.dcMotor.get("backleft");
         lion=hardwareMap.dcMotor.get("backright");
-        thewickedwitchofthewest=hardwareMap.dcMotor.get("arm");
+        TheWickedWitchOfTheWest=hardwareMap.dcMotor.get("arm");
     }
 
     public void loop(){
-            wereofftoseethewizardthewonderfulwizardofoz(); //I know you're only using this once but maybe a shorter name?
+            wereofftoseethewizardthewonderfulwizardofoz();
             illgetyoumypretty();
 
     }
@@ -68,15 +68,27 @@ private DcMotor dorothy, scarecrow, tinman, lion, thewickedwitchofthewest; //Cou
 
         if(gamepad2.right_trigger > 0.2)
         {
+<<<<<<< HEAD
             thewickedwitchofthewest.setPower(1.0);
+=======
+            TheWickedWitchOfTheWest.setPower(1);
+>>>>>>> eb99617805dcd86ac4319cc9cb0e3fc05467b270
         }
         else if (gamepad2.left_trigger < -0.2)
         {
+<<<<<<< HEAD
             thewickedwitchofthewest.setPower(-1.0);
         }
         else
         {
             thewickedwitchofthewest.setPower(0.0);
+=======
+            TheWickedWitchOfTheWest.setPower(-1);
+        }
+        else
+        {
+            TheWickedWitchOfTheWest.setPower(0);
+>>>>>>> eb99617805dcd86ac4319cc9cb0e3fc05467b270
         }
 
     }
