@@ -72,7 +72,6 @@ private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
             thewickedwitchofthewest.setPower(1.0);
 =======
             TheWickedWitchOfTheWest.setPower(1);
->>>>>>> eb99617805dcd86ac4319cc9cb0e3fc05467b270
         }
         else if (gamepad2.left_trigger < -0.2)
         {
@@ -83,12 +82,14 @@ private DcMotor dorothy, scarecrow, tinman, lion,TheWickedWitchOfTheWest;
         {
             thewickedwitchofthewest.setPower(0.0);
 =======
+
             TheWickedWitchOfTheWest.setPower(-1);
         }
         else
         {
             TheWickedWitchOfTheWest.setPower(0);
 >>>>>>> eb99617805dcd86ac4319cc9cb0e3fc05467b270
+
         }
 
     }
