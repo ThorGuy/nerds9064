@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
-private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest; //Could you possibly do camel-case for the long names?
+private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
     private double power=1.0;
     private boolean uh=false;
 
@@ -22,7 +22,7 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest; //Cou
     }
 
     public void loop(){
-            wereofftoseethewizardthewonderfulwizardofoz(); //I know you're only using this once but maybe a shorter name?
+            wereofftoseethewizardthewonderfulwizardofoz();
             illgetyoumypretty();
 
     }
