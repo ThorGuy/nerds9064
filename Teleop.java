@@ -14,10 +14,10 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
     private boolean uh=false;
 
     public void init(){
-        dorothy=hardwareMap.dcMotor.get("frontleft");
-        scarecrow=hardwareMap.dcMotor.get("frontright");
-        tinman=hardwareMap.dcMotor.get("backleft");
-        lion=hardwareMap.dcMotor.get("backright");
+        dorothy=hardwareMap.dcMotor.get("dorothy");
+        scarecrow=hardwareMap.dcMotor.get("scarecrow");
+        tinman=hardwareMap.dcMotor.get("tinman");
+        lion=hardwareMap.dcMotor.get("lion");
         TheWickedWitchOfTheWest=hardwareMap.dcMotor.get("arm");
     }
 
