@@ -89,7 +89,7 @@ private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
 
             arm.setPower(1);
         }
-        else if (gamepad2.left_trigger < -0.2)
+        else if (gamepad2.left_trigger > 0.2)
         {
 
             arm.setPower(-1);
