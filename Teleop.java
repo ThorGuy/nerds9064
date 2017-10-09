@@ -9,22 +9,25 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
-private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
+    final private boolean test = true;
+    private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
+    private boolean autonomous;
 
     public void init(){
-        leftFront=hardwareMap.dcMotor.get("leftFront");
-        rightFront=hardwareMap.dcMotor.get("rightFront");
-        leftBack=hardwareMap.dcMotor.get("leftBack");
-        rightBack=hardwareMap.dcMotor.get("rightBack");
-        arm=hardwareMap.dcMotor.get("arm");
+        Initialize(test);
+        autonomous=false;
     }
 
     public void loop(){
+        if(autonomous){
+
+        }else {
             wheels();
             arms();
+        }
 
     }
     public void wheels()
@@ -99,5 +102,19 @@ private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
             arm.setPower(0);
         }
 
+    }
+    public void Initialize(boolean test){ //If we want to test
+        if(test) {
+            leftFront = null;
+            rightFront = null;
+            leftBack = null;
+            rightBack = null;
+        }else{
+            leftFront = hardwareMap.dcMotor.get("leftFront");
+            rightFront = hardwareMap.dcMotor.get("rightFront");
+            leftBack = hardwareMap.dcMotor.get("leftBack");
+            rightBack = hardwareMap.dcMotor.get("rightBack");
+            arm = hardwareMap.dcMotor.get("arm");
+        }
     }
 }
