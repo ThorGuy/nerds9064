@@ -9,28 +9,28 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
-private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
+private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private double leftpower=1.0;
     private double rightpower=1.0;
-    private boolean uh=false;
+    private boolean toggle=false;
 
     public void init(){
-        dorothy=hardwareMap.dcMotor.get("dorothy");
-        scarecrow=hardwareMap.dcMotor.get("scarecrow");
-        tinman=hardwareMap.dcMotor.get("tinman");
-        lion=hardwareMap.dcMotor.get("lion");
-        TheWickedWitchOfTheWest=hardwareMap.dcMotor.get("arm");
+        leftFront=hardwareMap.dcMotor.get("leftFront");
+        rightFront=hardwareMap.dcMotor.get("rightFront");
+        leftBack=hardwareMap.dcMotor.get("leftBack");
+        rightBack=hardwareMap.dcMotor.get("rightBack");
+        arm=hardwareMap.dcMotor.get("arm");
     }
 
     public void loop(){
-            wereofftoseethewizardthewonderfulwizardofoz();
-            illgetyoumypretty();
+            wheels();
+            arms();
 
     }
-    public void wereofftoseethewizardthewonderfulwizardofoz()
+    public void wheels()
     {
 
-        if(!uh&&gamepad1.a){
+        if(!toggle&&gamepad1.a){
             if(leftpower<=.5)
             {
                 leftpower=leftpower*2;
@@ -50,54 +50,53 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
 
         }
 
-        uh=gamepad1.a;
+        toggle=gamepad1.a;
 
         if(gamepad1.dpad_up)
         {
-            dorothy.setPower(leftpower);
-            scarecrow.setPower(-rightpower);
-            tinman.setPower(-leftpower);
-            lion.setPower(rightpower);
+            leftFront.setPower(leftpower);
+            rightFront.setPower(-rightpower);
+            leftBack.setPower(-leftpower);
+            rightBack.setPower(rightpower);
         }
         if(gamepad1.dpad_down)
         {
-            dorothy.setPower(-leftpower);
-            scarecrow.setPower(rightpower);
-            tinman.setPower(leftpower);
-            lion.setPower(-rightpower);
+            leftFront.setPower(-leftpower);
+            rightFront.setPower(rightpower);
+            leftBack.setPower(leftpower);
+            rightBack.setPower(-rightpower);
         }
         if(gamepad1.dpad_left)
         {
-            dorothy.setPower(-leftpower);
-            scarecrow.setPower(-rightpower);
-            tinman.setPower(leftpower);
-            lion.setPower(rightpower);
+            leftFront.setPower(-leftpower);
+            rightFront.setPower(-rightpower);
+            leftBack.setPower(leftpower);
+            rightBack.setPower(rightpower);
         }
         if(gamepad1.dpad_right)
         {
-            dorothy.setPower(leftpower);
-            scarecrow.setPower(rightpower);
-            tinman.setPower(-leftpower);
-            lion.setPower(-rightpower);
+            leftFront.setPower(leftpower);
+            rightFront.setPower(rightpower);
+            leftBack.setPower(-leftpower);
+            rightBack.setPower(-rightpower);
         }
 
     }
-    public void illgetyoumypretty ()
+    public void arms ()
     {
-
         if(gamepad2.right_trigger > 0.2)
         {
 
-            TheWickedWitchOfTheWest.setPower(1);
+            arm.setPower(1);
         }
         else if (gamepad2.left_trigger < -0.2)
         {
 
-            TheWickedWitchOfTheWest.setPower(-1);
+            arm.setPower(-1);
         }
         else
         {
-            TheWickedWitchOfTheWest.setPower(0);
+            arm.setPower(0);
         }
 
     }
