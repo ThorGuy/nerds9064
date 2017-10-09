@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
+
 private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
     private double leftpower=1.0;
     private double rightpower=1.0;
@@ -25,6 +26,7 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
     public void loop(){
             wereofftoseethewizardthewonderfulwizardofoz();
             illgetyoumypretty();
+
 
     }
     public void wereofftoseethewizardthewonderfulwizardofoz()
@@ -100,5 +102,7 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
             TheWickedWitchOfTheWest.setPower(0);
         }
 
+    }
+    
     }
 }
