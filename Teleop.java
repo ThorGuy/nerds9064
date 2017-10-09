@@ -90,7 +90,7 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
 
             TheWickedWitchOfTheWest.setPower(1);
         }
-        else if (gamepad2.left_trigger < -0.2)
+        else if (gamepad2.left_trigger > 0.2)
         {
 
             TheWickedWitchOfTheWest.setPower(-1);
