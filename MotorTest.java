@@ -7,12 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 public class MotorTest extends OpMode {
-    private DcMotor dorothy, scarecrow, tinman, lion;
+    private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchoftheWest;
     public void init(){
         dorothy=hardwareMap.dcMotor.get("dorothy");
         scarecrow=hardwareMap.dcMotor.get("scarecrow");
         tinman=hardwareMap.dcMotor.get("tinman");
         lion=hardwareMap.dcMotor.get("lion");
+        TheWickedWitchoftheWest=hardwareMap.dcMotor.get("arm");
     }
     public void loop ()
     {
@@ -20,10 +21,12 @@ public class MotorTest extends OpMode {
         scarecrow.setPower(1);
         tinman.setPower(1);
         lion.setPower(1);
+        TheWickedWitchoftheWest.setPower(1);
         telemetry.addData("Dorothy Power", dorothy.getPower());
         telemetry.addData("Scarecrow Power", scarecrow.getPower());
         telemetry.addData("Tinman Power", tinman.getPower());
         telemetry.addData("Lion Power", lion.getPower());
+        telemetry.addData("Arm Power", TheWickedWitchoftheWest.getPower());
 
     }
 }
