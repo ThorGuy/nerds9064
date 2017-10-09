@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 public class Teleop extends OpMode{
 private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
-    private double power=1.0;
+    private double leftpower=1.0;
+    private double rightpower=1.0;
     private boolean uh=false;
 
     public void init(){
@@ -30,38 +31,54 @@ private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchOfTheWest;
     {
 
         if(!uh&&gamepad1.a){
-            power=1-(power-0.5);
+            if(leftpower<=.5)
+            {
+                leftpower=leftpower*2;
+            }
+            else
+            {
+                leftpower=leftpower/2;
+            }
+            if(rightpower<=.5)
+            {
+                rightpower=rightpower*2;
+            }
+            else
+            {
+                rightpower=rightpower/2;
+            }
+
         }
 
         uh=gamepad1.a;
 
         if(gamepad1.dpad_up)
         {
-            dorothy.setPower(power);
-            scarecrow.setPower(power);
-            tinman.setPower(power);
-            lion.setPower(power);
+            dorothy.setPower(leftpower);
+            scarecrow.setPower(-rightpower);
+            tinman.setPower(-leftpower);
+            lion.setPower(rightpower);
         }
         if(gamepad1.dpad_down)
         {
-            dorothy.setPower(-power);
-            scarecrow.setPower(-power);
-            tinman.setPower(-power);
-            lion.setPower(-power);
+            dorothy.setPower(-leftpower);
+            scarecrow.setPower(rightpower);
+            tinman.setPower(leftpower);
+            lion.setPower(-rightpower);
         }
         if(gamepad1.dpad_left)
         {
-            dorothy.setPower(-power);
-            scarecrow.setPower(power);
-            tinman.setPower(-power);
-            lion.setPower(power);
+            dorothy.setPower(-leftpower);
+            scarecrow.setPower(-rightpower);
+            tinman.setPower(leftpower);
+            lion.setPower(rightpower);
         }
         if(gamepad1.dpad_right)
         {
-            dorothy.setPower(power);
-            scarecrow.setPower(-power);
-            tinman.setPower(power);
-            lion.setPower(-power);
+            dorothy.setPower(leftpower);
+            scarecrow.setPower(rightpower);
+            tinman.setPower(-leftpower);
+            lion.setPower(-rightpower);
         }
 
     }
