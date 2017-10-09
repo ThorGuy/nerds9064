@@ -9,6 +9,15 @@ import org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064.Teleop;
 
 public class TotalCode extends OpMode{
 
+public void init ()
+{
 
+
+}
+public void loop ()
+{
+
+
+}
 
 }
