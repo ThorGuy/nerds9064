@@ -11,7 +11,11 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 //Hello it's your boy Jay
     //ALL HAIL THOR
 
-//TODO: Make artificial input and servo output methods.
+/*TODO:
+ - Make artificial servo output methods.
+ - Create a file-reading system for artifical input
+ - Create a format for files to read
+ */
 
 public class Teleop extends OpMode{
     final private boolean test = true;
