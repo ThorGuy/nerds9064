@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 //Hello it's your boy Jay
-    //ALL HAIL THE POP TART LORDS
+    //ALL HAIL THOR
 
 //TODO: Make artificial input and servo output methods.
 
@@ -166,7 +166,42 @@ public class Teleop extends OpMode{
     }
     public void getInputs(){
         if(test){
-            gamepad1.a=true;
+            gamepad1.a=false;
+            gamepad1.b=false;
+            gamepad1.x=false;
+            gamepad1.y=false;
+            gamepad1.dpad_down=false;
+            gamepad1.dpad_left=false;
+            gamepad1.dpad_right=false;
+            gamepad1.dpad_up=false;
+            gamepad1.left_bumper=false;
+            gamepad1.left_stick_button=false;
+            gamepad1.left_trigger=0;
+            gamepad1.left_stick_x=0;
+            gamepad1.left_stick_y=0;
+            gamepad1.right_bumper=false;
+            gamepad1.right_stick_button=false;
+            gamepad1.right_trigger=0;
+            gamepad1.right_stick_x=0;
+            gamepad1.right_stick_y=0;
+            gamepad2.a=false;
+            gamepad2.b=false;
+            gamepad2.x=false;
+            gamepad2.y=false;
+            gamepad2.dpad_down=false;
+            gamepad2.dpad_left=false;
+            gamepad2.dpad_right=false;
+            gamepad2.dpad_up=false;
+            gamepad2.left_bumper=false;
+            gamepad2.left_stick_button=false;
+            gamepad2.left_trigger=0;
+            gamepad2.left_stick_x=0;
+            gamepad2.left_stick_y=0;
+            gamepad2.right_bumper=false;
+            gamepad2.right_stick_button=false;
+            gamepad2.right_trigger=0;
+            gamepad2.right_stick_x=0;
+            gamepad2.right_stick_y=0;
         }
     }
 }
