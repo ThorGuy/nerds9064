@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 //TODO: Make artificial input and servo output methods.
 
 public class Teleop extends OpMode{
-    final private boolean test = true;
+    final private boolean test = false;
 
     //Input variables
     private double joyX1, joyY1, joyX2, joyY2;
@@ -140,12 +140,12 @@ public class Teleop extends OpMode{
         }
 
     }
-    public void setMotorPower(String motorName, DcMotor motor, double power){
-            telemetry.addData(motorName+" power: ", ""+power);
-        if(!test){
-            motor.setPower(power);
+
         }
     }
+    public void setMotorPower(String motorName, DcMotor motor, double power){
+        telemetry.addData(motorName+" power: ", ""+power);
+        if(!test){
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
