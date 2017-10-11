@@ -15,18 +15,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 //TODO: Make artificial input and servo output methods.
 
 public class Teleop extends OpMode{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
-    final private boolean test = false;
-=======
     final private boolean test = true;
->>>>>>> parent of ad75572... Let us push
 
     //Input variables
     private double joyX1, joyY1, joyX2, joyY2;
@@ -149,28 +138,7 @@ public class Teleop extends OpMode{
             mastersplinter=gamepad2.b;
 
         }
-
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
-
-        }
-    }
-=======
->>>>>>> parent of ad75572... Let us push
-    public void setMotorPower(String motorName, DcMotor motor, double power){
-            telemetry.addData(motorName+" power: ", ""+power);
-        if(!test){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(test){
@@ -179,8 +147,6 @@ public class Teleop extends OpMode{
             motor.setPower(power);
         }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     public void setServoPower(String servoName, DcMotor servo, double power){
         telemetry.addData(servoName+" position: ", ""+power);
         if(test){
@@ -189,20 +155,6 @@ public class Teleop extends OpMode{
             servo.setPower(power);
         }
     }
->>>>>>> effe222be3f471f5e2be4388ffda73d5e2523547
-=======
->>>>>>> parent of effe222... Added a setServoPower method
-=======
->>>>>>> parent of effe222... Added a setServoPower method
-=======
-            motor.setPower(power);
-        }
-    }
->>>>>>> parent of ad75572... Let us push
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
-=======
->>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
