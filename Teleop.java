@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Created by Brennan on 9/20/2017
  */
 
-//TODO: add artifical input and servo output.
 //Hello it's your boy Jay
 
 //TODO: Make artificial input and servo output methods.
