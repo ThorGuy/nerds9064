@@ -152,6 +152,10 @@ public class Teleop extends OpMode{
             rightFront = null;
             leftBack = null;
             rightBack = null;
+            teenage=null;
+            mutant=null;
+            ninja=null;
+            turtles=null;
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
