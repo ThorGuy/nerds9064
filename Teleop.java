@@ -182,6 +182,8 @@ public class Teleop extends OpMode{
 >>>>>>> effe222be3f471f5e2be4388ffda73d5e2523547
 =======
 >>>>>>> parent of effe222... Added a setServoPower method
+=======
+>>>>>>> parent of effe222... Added a setServoPower method
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
