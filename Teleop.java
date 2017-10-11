@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 //TODO: add artifical input and servo output.
 //Hello it's your boy Jay
-    //ALL HAIL THOR
+    //ALL HAIL THE POP TART LORDS
 
 //TODO: Make artificial input and servo output methods.
 
