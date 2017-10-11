@@ -170,6 +170,7 @@ public class Teleop extends OpMode{
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void setServoPower(String servoName, DcMotor servo, double power){
         telemetry.addData(servoName+" position: ", ""+power);
         if(test){
