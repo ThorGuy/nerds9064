@@ -15,11 +15,6 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 public class Teleop extends OpMode{
     final private boolean test = true;
-
-    //Input variables
-    private double joyX1, joyY1, joyX2, joyY2;
-    private boolean a1, b1, x1, y1, a2, b2, x2, y2, up1, down1, left1, right1, up2, down2, left2, right2;
-
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo teenage, mutant, ninja, turtles;
     private double leonardo=0.5;
@@ -38,6 +33,7 @@ public class Teleop extends OpMode{
     }
 
     public void loop(){
+        getInputs();
         if(autonomous){
 
         }else {
@@ -49,7 +45,6 @@ public class Teleop extends OpMode{
     }
     public void wheels()
     {
-
         if(!toggle&&gamepad1.a){
             if(leftpower<=.5)
             {
@@ -141,7 +136,9 @@ public class Teleop extends OpMode{
     }
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
-        if(!test){
+        if(test){
+
+        }else{
             motor.setPower(power);
         }
     }
@@ -161,6 +158,11 @@ public class Teleop extends OpMode{
             mutant=hardwareMap.servo.get("servo2");
             ninja=hardwareMap.servo.get("servo3");
             turtles=hardwareMap.servo.get("servo4");
+        }
+    }
+    public void getInputs(){
+        if(test){
+            gamepad1.a=true;
         }
     }
 }
