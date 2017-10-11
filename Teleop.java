@@ -152,6 +152,14 @@ public class Teleop extends OpMode{
             motor.setPower(power);
         }
     }
+    public void setServoPower(String servoName, DcMotor servo, double power){
+        telemetry.addData(servoName+" position: ", ""+power);
+        if(test){
+
+        }else{
+            servo.setPower(power);
+        }
+    }
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
