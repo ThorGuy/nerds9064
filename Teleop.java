@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 //Hello it's your boy Jay
+    //ALL HAIL THE POP TART LORDS
 
 //TODO: Make artificial input and servo output methods.
 
@@ -147,6 +148,10 @@ public class Teleop extends OpMode{
             rightFront = null;
             leftBack = null;
             rightBack = null;
+            teenage=null;
+            mutant=null;
+            ninja=null;
+            turtles=null;
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
