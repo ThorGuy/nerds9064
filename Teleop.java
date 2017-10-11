@@ -59,31 +59,31 @@ public class Teleop extends OpMode{
 
         if(gamepad1.dpad_up)
         {
-            leftFront.setPower(leftpower);
-            rightFront.setPower(-rightpower);
-            leftBack.setPower(-leftpower);
-            rightBack.setPower(rightpower);
+            setMotorPower("Left Front",leftFront,leftpower);
+            setMotorPower("Right Front",rightFront,-rightpower);
+            setMotorPower("Left Back",leftBack,-leftpower);
+            setMotorPower("Right Back",rightBack,rightpower);
         }
         if(gamepad1.dpad_down)
         {
-            leftFront.setPower(-leftpower);
-            rightFront.setPower(rightpower);
-            leftBack.setPower(leftpower);
-            rightBack.setPower(-rightpower);
+            setMotorPower("Left Front",leftFront,-leftpower);
+            setMotorPower("Right Front",rightFront,rightpower);
+            setMotorPower("Left Back",leftBack,leftpower);
+            setMotorPower("Right Back",rightBack,-rightpower);
         }
         if(gamepad1.dpad_left)
         {
-            leftFront.setPower(-leftpower);
-            rightFront.setPower(-rightpower);
-            leftBack.setPower(leftpower);
-            rightBack.setPower(rightpower);
+            setMotorPower("Left Front",leftFront,-leftpower);
+            setMotorPower("Right Front",rightFront,-rightpower);
+            setMotorPower("Left Back",leftBack,leftpower);
+            setMotorPower("Right Back",rightBack,rightpower);
         }
         if(gamepad1.dpad_right)
         {
-            leftFront.setPower(leftpower);
-            rightFront.setPower(rightpower);
-            leftBack.setPower(-leftpower);
-            rightBack.setPower(-rightpower);
+            setMotorPower("Left Front",leftFront,leftpower);
+            setMotorPower("Right Front",rightFront,rightpower);
+            setMotorPower("Left Back",leftBack,-leftpower);
+            setMotorPower("Right Back",rightBack,-rightpower);
         }
 
     }
@@ -91,19 +91,24 @@ public class Teleop extends OpMode{
     {
         if(gamepad2.right_trigger > 0.2)
         {
-
-            arm.setPower(1);
+            setMotorPower("Arm", arm, 1);
         }
         else if (gamepad2.left_trigger > 0.2)
         {
 
-            arm.setPower(-1);
+            setMotorPower("Arm", arm, -1);
         }
         else
         {
-            arm.setPower(0);
+            setMotorPower("Arm", arm, 0);
         }
 
+    }
+    public void setMotorPower(String motorName, DcMotor motor, double power){
+            telemetry.addData(motorName+" power: ", ""+power);
+        if(!test){
+            motor.setPower(power);
+        }
     }
     public void Initialize(boolean test){ //If we want to test
         if(test) {
