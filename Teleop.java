@@ -25,7 +25,11 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 public class Teleop extends OpMode{
 <<<<<<< HEAD
+<<<<<<< HEAD
     final private boolean test = false;
+=======
+    final private boolean test = true;
+>>>>>>> parent of ad75572... Let us push
 
     //Input variables
     private double joyX1, joyY1, joyX2, joyY2;
@@ -154,12 +158,16 @@ public class Teleop extends OpMode{
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         }
     }
+=======
+>>>>>>> parent of ad75572... Let us push
     public void setMotorPower(String motorName, DcMotor motor, double power){
-        telemetry.addData(motorName+" power: ", ""+power);
+            telemetry.addData(motorName+" power: ", ""+power);
         if(!test){
+<<<<<<< HEAD
 =======
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
@@ -184,6 +192,11 @@ public class Teleop extends OpMode{
 >>>>>>> parent of effe222... Added a setServoPower method
 =======
 >>>>>>> parent of effe222... Added a setServoPower method
+=======
+            motor.setPower(power);
+        }
+    }
+>>>>>>> parent of ad75572... Let us push
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
