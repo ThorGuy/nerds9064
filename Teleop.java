@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Created by Brennan on 9/20/2017
  */
 
+//Hello it's your boy Jay
+
 public class Teleop extends OpMode{
     final private boolean test = true;
     private double joyX1, joyY1, joyX2, joyY2;
