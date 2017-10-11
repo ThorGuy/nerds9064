@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 //TODO: add artifical input and servo output.
+//Hello it's your boy Jay
 
 public class Teleop extends OpMode{
     final private boolean test = true;
@@ -18,9 +19,15 @@ public class Teleop extends OpMode{
     private boolean a1, b1, x1, y1, a2, b2, x2, y2, up1, down1, left1, right1, up2, down2, left2, right2;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
+    private Servo teenage, mutant, ninja, turtles;
+    private double leonardo=0.5;
+    private double michaelangelo=0.5;
+    private double donatello=0.5;
+    private double raphael=0.5;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
+    private boolean mastersplinter=false;
     private boolean autonomous;
 
     public void init(){
@@ -34,6 +41,7 @@ public class Teleop extends OpMode{
         }else {
             wheels();
             arms();
+            heroesinahalfshellturtlepower();
         }
 
     }
@@ -109,6 +117,26 @@ public class Teleop extends OpMode{
         }
 
     }
+    public void heroesinahalfshellturtlepower ()
+    {
+        if(!test) {
+            teenage.setPosition(leonardo);
+            mutant.setPosition(michaelangelo);
+            ninja.setPosition(donatello);
+            turtles.setPosition(raphael);
+            if(!mastersplinter && gamepad2.b)
+            {
+                leonardo=1-leonardo;
+                michaelangelo=1-michaelangelo;
+                donatello=1-donatello;
+                raphael=1-raphael;
+
+            }
+            mastersplinter=gamepad2.b;
+
+        }
+
+    }
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(!test){
@@ -127,6 +155,10 @@ public class Teleop extends OpMode{
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
             arm = hardwareMap.dcMotor.get("arm");
+            teenage=hardwareMap.servo.get("servo1");
+            mutant=hardwareMap.servo.get("servo2");
+            ninja=hardwareMap.servo.get("servo3");
+            turtles=hardwareMap.servo.get("servo4");
         }
     }
 }
