@@ -18,6 +18,9 @@ public class Teleop extends OpMode{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
 =======
 >>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
     final private boolean test = false;
@@ -151,6 +154,9 @@ public class Teleop extends OpMode{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
 =======
 >>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
 
@@ -161,6 +167,7 @@ public class Teleop extends OpMode{
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(!test){
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -192,6 +199,8 @@ public class Teleop extends OpMode{
         }
     }
 >>>>>>> parent of ad75572... Let us push
+=======
+>>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
 =======
 >>>>>>> parent of 05108d2... Merge branch 'master' of https://github.com/ThorGuy/nerds9064
     public void Initialize(boolean test){ //If we want to test
