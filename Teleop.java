@@ -184,10 +184,12 @@ public class Teleop extends OpMode{
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
             arm = hardwareMap.dcMotor.get("arm");
+            /*
             teenage=hardwareMap.servo.get("servo1");
             mutant=hardwareMap.servo.get("servo2");
             ninja=hardwareMap.servo.get("servo3");
             turtles=hardwareMap.servo.get("servo4");
+            */
         }
     }
     public void getInputs(){
