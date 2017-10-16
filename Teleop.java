@@ -151,14 +151,6 @@ public class Teleop extends OpMode{
         }
 
     }
-
-
-        }
-    }
-    public void setMotorPower(String motorName, DcMotor motor, double power){
-        telemetry.addData(motorName+" power: ", ""+power);
-        if(!test){
-
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(test){
