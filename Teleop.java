@@ -2,7 +2,12 @@ package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.*;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Brennan on 9/20/2017
@@ -27,10 +32,11 @@ public class Teleop extends OpMode{
 
     final private boolean test = false;
 
-    //Input variables
-    private double joyX1, joyY1, joyX2, joyY2;
-    private boolean a1, b1, x1, y1, a2, b2, x2, y2, up1, down1, left1, right1, up2, down2, left2, right2;
+    private ElapsedTime runTime = new ElapsedTime();
 
+    private BufferedReader fakeIn;
+    private String inLine;
+    private ArrayList<String> inArgs = new ArrayList<String>();
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo teenage, mutant, ninja, turtles;
@@ -45,8 +51,19 @@ public class Teleop extends OpMode{
     private boolean autonomous;
 
     public void init(){
+
+        runTime.reset();
+
         Initialize(test);
         autonomous=false;
+
+        //Initialize file reading
+        try{
+            BufferedReader fakeIn = new BufferedReader(new FileReader("input.txt"));
+            inLine = fakeIn.readLine();
+            inArgs.clear();
+            inArgs.addAll(Arrays.asList(inLine.split(";")));
+        }catch(FileNotFoundException c){}catch(IOException c){}
     }
 
     public void loop(){
@@ -192,42 +209,169 @@ public class Teleop extends OpMode{
     }
     public void getInputs(){
         if(test){
-            gamepad1.a=false;
-            gamepad1.b=false;
-            gamepad1.x=false;
-            gamepad1.y=false;
-            gamepad1.dpad_down=false;
-            gamepad1.dpad_left=false;
-            gamepad1.dpad_right=false;
-            gamepad1.dpad_up=false;
-            gamepad1.left_bumper=false;
-            gamepad1.left_stick_button=false;
-            gamepad1.left_trigger=0;
-            gamepad1.left_stick_x=0;
-            gamepad1.left_stick_y=0;
-            gamepad1.right_bumper=false;
-            gamepad1.right_stick_button=false;
-            gamepad1.right_trigger=0;
-            gamepad1.right_stick_x=0;
-            gamepad1.right_stick_y=0;
-            gamepad2.a=false;
-            gamepad2.b=false;
-            gamepad2.x=false;
-            gamepad2.y=false;
-            gamepad2.dpad_down=false;
-            gamepad2.dpad_left=false;
-            gamepad2.dpad_right=false;
-            gamepad2.dpad_up=false;
-            gamepad2.left_bumper=false;
-            gamepad2.left_stick_button=false;
-            gamepad2.left_trigger=0;
-            gamepad2.left_stick_x=0;
-            gamepad2.left_stick_y=0;
-            gamepad2.right_bumper=false;
-            gamepad2.right_stick_button=false;
-            gamepad2.right_trigger=0;
-            gamepad2.right_stick_x=0;
-            gamepad2.right_stick_y=0;
+            if(fakeIn!=null){
+                //Test to see if the inputs need to be switched
+                try {
+                    if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
+                        inLine = fakeIn.readLine();
+                        inArgs.clear();
+                        inArgs.addAll(Arrays.asList(inLine.split(";")));
+                    }
+                }catch(IOException c){}
+
+                for(int i=1;i<inArgs.size();i+=2){
+                    switch(inArgs.get(i)){
+                        case "a1":
+                            gamepad1.a=false;
+                            break;
+                        case "b1":
+                            gamepad1.b = false;
+                            break;
+                        case "x1":
+                            gamepad1.x = false;
+                            break;
+                        case "y1":
+                            gamepad1.y = false;
+                            break;
+                        case "dpad_down1":
+                            gamepad1.dpad_down = false;
+                            break;
+                        case "dpad_left1":
+                            gamepad1.dpad_left = false;
+                            break;
+                        case "dpad_right1":
+                            gamepad1.dpad_right = false;
+                            break;
+                        case "dpad_up1":
+                            gamepad1.dpad_up = false;
+                            break;
+                        case "left_bumper1":
+                            gamepad1.left_bumper = false;
+                            break;
+                        case "left_stick_button1":
+                            gamepad1.left_stick_button = false;
+                            break;
+                        case "left_trigger1":
+                            gamepad1.left_trigger = 0;
+                            break;
+                        case "left_stick_x1":
+                            gamepad1.left_stick_x = 0;
+                            break;
+                        case "left_stick_y1":
+                            gamepad1.left_stick_y = 0;
+                            break;
+                        case "right_bumper1":
+                            gamepad1.right_bumper = false;
+                            break;
+                        case "right_stick_button1":
+                            gamepad1.right_stick_button = false;
+                            break;
+                        case "right_trigger1":
+                            gamepad1.right_trigger = 0;
+                            break;
+                        case "right_stick_x1":
+                            gamepad1.right_stick_x = 0;
+                            break;
+                        case "right_stick_y1":
+                            gamepad1.right_stick_y = 0;
+                            break;
+                        case "a2":
+                            gamepad2.a = false;
+                            break;
+                        case "b2":
+                            gamepad2.b = false;
+                            break;
+                        case "x2":
+                            gamepad2.x = false;
+                            break;
+                        case "y2":
+                            gamepad2.y = false;
+                            break;
+                        case "dpad_down2":
+                            gamepad2.dpad_down = false;
+                            break;
+                        case "dpad_left2":
+                            gamepad2.dpad_left = false;
+                            break;
+                        case "dpad_right2":
+                            gamepad2.dpad_right = false;
+                            break;
+                        case "dpad_up2":
+                            gamepad2.dpad_up = false;
+                            break;
+                        case "left_bunmper2":
+                            gamepad2.left_bumper = false;
+                            break;
+                        case "left_stick_button2":
+                            gamepad2.left_stick_button = false;
+                            break;
+                        case "left_trigger2":
+                            gamepad2.left_trigger = 0;
+                            break;
+                        case "left_stick_x2":
+                            gamepad2.left_stick_x = 0;
+                            break;
+                        case "left_stick_y2":
+                            gamepad2.left_stick_y = 0;
+                            break;
+                        case "right_bumper2":
+                            gamepad2.right_bumper = false;
+                            break;
+                        case "right_stick_button2":
+                            gamepad2.right_stick_button = false;
+                            break;
+                        case "right_trigger2":
+                            gamepad2.right_trigger = 0;
+                            break;
+                        case "right_stick_x2":
+                            gamepad2.right_stick_x = 0;
+                            break;
+                        case "right_stick_y2":
+                            gamepad2.right_stick_y = 0;
+                            break;
+                        default:
+                            telemetry.addData("ERROR:","Unsupported input \""+inArgs.get(i)+"\"");
+                    }
+                }
+
+            }else{
+                gamepad1.a = false;
+                gamepad1.b = false;
+                gamepad1.x = false;
+                gamepad1.y = false;
+                gamepad1.dpad_down = false;
+                gamepad1.dpad_left = false;
+                gamepad1.dpad_right = false;
+                gamepad1.dpad_up = false;
+                gamepad1.left_bumper = false;
+                gamepad1.left_stick_button = false;
+                gamepad1.left_trigger = 0;
+                gamepad1.left_stick_x = 0;
+                gamepad1.left_stick_y = 0;
+                gamepad1.right_bumper = false;
+                gamepad1.right_stick_button = false;
+                gamepad1.right_trigger = 0;
+                gamepad1.right_stick_x = 0;
+                gamepad1.right_stick_y = 0;
+                gamepad2.a = false;
+                gamepad2.b = false;
+                gamepad2.x = false;
+                gamepad2.y = false;
+                gamepad2.dpad_down = false;
+                gamepad2.dpad_left = false;
+                gamepad2.dpad_right = false;
+                gamepad2.dpad_up = false;
+                gamepad2.left_bumper = false;
+                gamepad2.left_stick_button = false;
+                gamepad2.left_trigger = 0;
+                gamepad2.left_stick_x = 0;
+                gamepad2.left_stick_y = 0;
+                gamepad2.right_bumper = false;
+                gamepad2.right_stick_button = false;
+                gamepad2.right_trigger = 0;
+                gamepad2.right_stick_x = 0;
+                gamepad2.right_stick_y = 0;
+            }
         }
     }
 }
