@@ -24,16 +24,14 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  */
 
 public class Teleop extends OpMode{
-<<<<<<< HEAD
+
     final private boolean test = false;
 
     //Input variables
     private double joyX1, joyY1, joyX2, joyY2;
     private boolean a1, b1, x1, y1, a2, b2, x2, y2, up1, down1, left1, right1, up2, down2, left2, right2;
 
-=======
-    final private boolean test = true;
->>>>>>> effe222be3f471f5e2be4388ffda73d5e2523547
+
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo teenage, mutant, ninja, turtles;
     private double leonardo=0.5;
@@ -153,14 +151,14 @@ public class Teleop extends OpMode{
         }
 
     }
-<<<<<<< HEAD
+
 
         }
     }
     public void setMotorPower(String motorName, DcMotor motor, double power){
         telemetry.addData(motorName+" power: ", ""+power);
         if(!test){
-=======
+
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(test){
@@ -177,7 +175,7 @@ public class Teleop extends OpMode{
             servo.setPower(power);
         }
     }
->>>>>>> effe222be3f471f5e2be4388ffda73d5e2523547
+
     public void Initialize(boolean test){ //If we want to test
         if(test) {
             leftFront = null;
