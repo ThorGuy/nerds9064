@@ -52,14 +52,14 @@ public class Teleop extends OpMode{
 
     public void init(){
 
-        runTime.reset();
+        runTime.reset(); //Reset the timer
 
-        Initialize(test);
+        Initialize(test); //Initialize servos and motors
         autonomous=false;
 
         //Initialize file reading
         try{
-            BufferedReader fakeIn = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader fakeIn = new BufferedReader(new FileReader("input.txt")); //input.txt can be any existing file
             inLine = fakeIn.readLine();
             inArgs.clear();
             inArgs.addAll(Arrays.asList(inLine.split(";")));
@@ -67,9 +67,9 @@ public class Teleop extends OpMode{
     }
 
     public void loop(){
-        getInputs();
+        getInputs(); //Read inputs from a file if necessary
         if(autonomous){
-
+            //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
             arms();
@@ -77,8 +77,10 @@ public class Teleop extends OpMode{
         }
 
     }
+    //Drive train
     public void wheels()
     {
+        //Speed toggle
         if(!toggle&&gamepad1.a){
             if(leftpower<=.5)
             {
@@ -101,6 +103,7 @@ public class Teleop extends OpMode{
 
         toggle=gamepad1.a;
 
+        //Movement
         if(gamepad1.dpad_up)
         {
             setMotorPower("Left Front",leftFront,leftpower);
@@ -131,6 +134,7 @@ public class Teleop extends OpMode{
         }
 
     }
+    //Controlling the arm
     public void arms ()
     {
         if(gamepad2.right_trigger > 0.2)
@@ -148,6 +152,7 @@ public class Teleop extends OpMode{
         }
 
     }
+    //Servo stuff
     public void heroesinahalfshellturtlepower ()
     {
         if(!test) {
@@ -168,6 +173,7 @@ public class Teleop extends OpMode{
         }
 
     }
+    //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
         if(test){
@@ -176,6 +182,7 @@ public class Teleop extends OpMode{
             motor.setPower(power);
         }
     }
+    //Won't send power to servos if test mode is on
     public void setServoPower(String servoName, DcMotor servo, double power){
         telemetry.addData(servoName+" position: ", ""+power);
         if(test){
@@ -185,8 +192,8 @@ public class Teleop extends OpMode{
         }
     }
 
-    public void Initialize(boolean test){ //If we want to test
-        if(test) {
+    public void Initialize(boolean test){
+        if(test) { //Motors get set to null in testing mode so the phone doesn't try and look for them
             leftFront = null;
             rightFront = null;
             leftBack = null;
@@ -209,10 +216,14 @@ public class Teleop extends OpMode{
             */
         }
     }
+    //Overwrites inputs if testing mode is on
     public void getInputs(){
         if(test){
+            //Turns everything off once it reaches the end of the file
             if(fakeIn!=null){
                 //Test to see if the inputs need to be switched
+
+                //File reading
                 try {
                     if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
                         inLine = fakeIn.readLine();
@@ -222,6 +233,7 @@ public class Teleop extends OpMode{
                 }catch(IOException c){}
 
                 for(int i=1;i<inArgs.size()-1;i+=2){
+                    //Stupidly big switch statement that sets the inputs
                     switch(inArgs.get(i)){
                         case "a1":
                             gamepad1.a=Boolean.parseBoolean(inArgs.get(i+1));
