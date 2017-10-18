@@ -73,7 +73,8 @@ public class Teleop extends OpMode{
         }else {
             wheels();
             //arms();
-            //n[heroesinahalfshellturtlepower();        }
+            //n[heroesinahalfshellturtlepower();
+        }
 
     }
     //Drive train
@@ -154,7 +155,7 @@ public class Teleop extends OpMode{
     //Servo stuff
     public void heroesinahalfshellturtlepower ()
     {
-        if(!test) {
+        if(false) { //False until we find out everything about the servos, which direction they turn, etc.
             teenage.setPosition(leonardo);
             mutant.setPosition(michaelangelo);
             ninja.setPosition(donatello);
@@ -182,12 +183,12 @@ public class Teleop extends OpMode{
         }
     }
     //Won't send power to servos if test mode is on
-    public void setServoPower(String servoName, DcMotor servo, double power){
+    public void setServoPower(String servoName, Servo servo, double power){
         telemetry.addData(servoName+" position: ", ""+power);
         if(test){
 
         }else{
-            servo.setPower(power);
+            servo.setPosition(power);
         }
     }
 
