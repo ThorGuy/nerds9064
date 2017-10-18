@@ -82,22 +82,8 @@ public class Teleop extends OpMode{
     {
         //Speed toggle
         if(!toggle&&gamepad1.a){
-            if(leftpower<=.5)
-            {
-                leftpower=leftpower*2;
-            }
-            else
-            {
-                leftpower=leftpower/2;
-            }
-            if(rightpower<=.5)
-            {
-                rightpower=rightpower*2;
-            }
-            else
-            {
-                rightpower=rightpower/2;
-            }
+                leftpower=1.5-leftpower;
+                rightpower=1.5-rightpower;
 
         }
 
@@ -151,6 +137,16 @@ public class Teleop extends OpMode{
             setMotorPower("Left Back",leftBack,-leftpower);
             setMotorPower("Right Back",rightBack,-rightpower);
         }
+
+
+    }
+    //Alternate Drive
+    public void ThorTrain(){
+
+        float x = gamepad1.left_stick_x;
+        float y = gamepad1.left_stick_y;
+        double dir = Math.tan(y/x);
+        //Yay trig
 
 
     }
