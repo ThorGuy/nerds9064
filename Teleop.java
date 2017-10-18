@@ -181,6 +181,7 @@ public class Teleop extends OpMode{
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power){
             telemetry.addData(motorName+" power: ", ""+power);
+        turtles=null;
         if(test){
 
         }else{
@@ -206,7 +207,6 @@ public class Teleop extends OpMode{
             teenage=null;
             mutant=null;
             ninja=null;
-            turtles=null;
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
