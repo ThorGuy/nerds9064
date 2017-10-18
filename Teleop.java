@@ -72,9 +72,8 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
-            arms();
-            heroesinahalfshellturtlepower();
-        }
+            //arms();
+            //n[heroesinahalfshellturtlepower();        }
 
     }
     //Drive train
