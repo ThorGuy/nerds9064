@@ -95,32 +95,32 @@ public class Teleop extends OpMode{
         setMotorPower("Right Back",rightBack,0);
 
         //Movement
-        if(gamepad1.left_stick_x < -.25)
+        if(gamepad1.left_stick_x > .25)
         {
             setMotorPower("Left Front",leftFront,-leftpower);
             setMotorPower("Right Front",rightFront,rightpower);
             setMotorPower("Left Back",leftBack,-leftpower);
             setMotorPower("Right Back",rightBack,rightpower);
         }
-        if(gamepad1.left_stick_x > .25)
+        if(gamepad1.left_stick_x < -.25)
         {
             setMotorPower("Left Front",leftFront,leftpower);
             setMotorPower("Right Front",rightFront,-rightpower);
             setMotorPower("Left Back",leftBack,leftpower);
             setMotorPower("Right Back",rightBack,-rightpower);
         }
+        if(gamepad1.left_stick_y > .25)
+        {
+            setMotorPower("Left Front",leftFront,leftpower);
+            setMotorPower("Right Front",rightFront,rightpower);
+            setMotorPower("Left Back",leftBack,-leftpower);
+            setMotorPower("Right Back",rightBack,-rightpower);
+        }
         if(gamepad1.left_stick_y < -.25)
         {
             setMotorPower("Left Front",leftFront,-leftpower);
-            setMotorPower("Right Front",rightFront,rightpower);
-            setMotorPower("Left Back",leftBack,-leftpower);
-            setMotorPower("Right Back",rightBack,rightpower);
-        }
-        if(gamepad1.left_stick_y > .25)
-        {
-            setMotorPower("Left Front",leftFront,-leftpower);
-            setMotorPower("Right Front",rightFront,rightpower);
-            setMotorPower("Left Back",leftBack,-leftpower);
+            setMotorPower("Right Front",rightFront,-rightpower);
+            setMotorPower("Left Back",leftBack,leftpower);
             setMotorPower("Right Back",rightBack,rightpower);
         }
         if(gamepad1.left_trigger > .25)
