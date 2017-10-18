@@ -73,7 +73,7 @@ public class Teleop extends OpMode{
         }else {
             wheels();
             //arms();
-            //n[heroesinahalfshellturtlepower();
+            //heroesinahalfshellturtlepower();
         }
 
     }
@@ -102,6 +102,11 @@ public class Teleop extends OpMode{
         }
 
         toggle=gamepad1.a;
+
+        setMotorPower("Left Front",leftFront,0);
+        setMotorPower("Right Front",rightFront,0);
+        setMotorPower("Left Back",leftBack,0);
+        setMotorPower("Right Back",rightBack,0);
 
         //Movement
         if(gamepad1.left_stick_y > .25)
