@@ -140,16 +140,6 @@ public class Teleop extends OpMode{
 
 
     }
-    //Alternate Drive
-    public void ThorTrain(){
-
-        float x = gamepad1.left_stick_x;
-        float y = gamepad1.left_stick_y;
-        double dir = Math.tan(y/x);
-        //Yay trig
-
-
-    }
     //Controlling the arm
     public void arms ()
     {
@@ -231,6 +221,24 @@ public class Teleop extends OpMode{
             turtles=hardwareMap.servo.get("servo4");
             */
         }
+    }
+    //Converts a degree value to an x and y value on a circle with a radius of 1.
+    public double[] DirToXY(double dir){
+        double[] out = new double[2];
+
+        out[0] = Math.cos(dir);
+        out[1] = Math.cos(dir);
+
+        return out;
+    }
+    //Converts x and y coordinates into a degree value pointing at that coordinate from the origin.
+    public double XYtoDir(double x, double y){
+        double out = 0;
+
+        out = Math.tan(y/x);
+        if(y<0)out*=-1;
+
+        return out;
     }
     //Overwrites inputs if testing mode is on
     public void getInputs(){
