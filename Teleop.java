@@ -32,6 +32,8 @@ public class Teleop extends OpMode{
 
     final private boolean test = false;
 
+    final private String autoFileName = "test.auto";
+
     private ElapsedTime runTime = new ElapsedTime();
 
     private BufferedReader fakeIn;
@@ -59,7 +61,7 @@ public class Teleop extends OpMode{
 
         //Initialize file reading
         try{
-            BufferedReader fakeIn = new BufferedReader(new FileReader("input.txt")); //input.txt can be any existing file
+            BufferedReader fakeIn = new BufferedReader(new FileReader(autoFileName)); //input.txt can be any existing file
             inLine = fakeIn.readLine();
             inArgs.clear();
             inArgs.addAll(Arrays.asList(inLine.split(";")));
@@ -254,11 +256,13 @@ public class Teleop extends OpMode{
 
                 //File reading
                 try {
-                    if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
-                        inLine = fakeIn.readLine();
-                        inArgs.clear();
-                        inArgs.addAll(Arrays.asList(inLine.split(";")));
-                    }
+                    do {
+                        if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
+                            inLine = fakeIn.readLine();
+                            inArgs.clear();
+                            inArgs.addAll(Arrays.asList(inLine.split(";")));
+                        }
+                    }while(inArgs.get(0).startsWith("//"));
                 }catch(IOException c){}
 
                 for(int i=1;i<inArgs.size()-1;i+=2){
