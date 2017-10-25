@@ -9,10 +9,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class MotorTest extends OpMode {
     private DcMotor dorothy, scarecrow, tinman, lion, TheWickedWitchoftheWest;
     public void init(){
-        dorothy=hardwareMap.dcMotor.get("dorothy");
-        scarecrow=hardwareMap.dcMotor.get("scarecrow");
-        tinman=hardwareMap.dcMotor.get("tinman");
-        lion=hardwareMap.dcMotor.get("lion");
+        dorothy=hardwareMap.dcMotor.get("leftFront");
+        scarecrow=hardwareMap.dcMotor.get("rightFront");
+        tinman=hardwareMap.dcMotor.get("leftBack");
+        lion=hardwareMap.dcMotor.get("rightBack");
         TheWickedWitchoftheWest=hardwareMap.dcMotor.get("arm");
     }
     public void loop ()
