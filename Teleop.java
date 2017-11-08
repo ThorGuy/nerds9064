@@ -65,7 +65,7 @@ public class Teleop extends OpMode{
             inArgs.clear();
             inArgs.addAll(Arrays.asList(inLine.split(",")));
         }catch(Exception ex){
-
+            //Uh oh there's an error
         }
 
         runTime.reset(); //Reset the timer
@@ -77,7 +77,7 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
-            //arms();
+            arms();
             //heroesinahalfshellturtlepower();
         }
 
@@ -223,7 +223,7 @@ public class Teleop extends OpMode{
             rightFront = hardwareMap.dcMotor.get("rightFront");
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
-            //arm = hardwareMap.dcMotor.get("arm");
+            arm = hardwareMap.dcMotor.get("arm");
             /*
             teenage=hardwareMap.servo.get("servo1");
             mutant=hardwareMap.servo.get("servo2");
