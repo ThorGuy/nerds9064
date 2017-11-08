@@ -41,6 +41,9 @@ public class Teleop extends OpMode{
     private String inLine;
     private ArrayList<String> inArgs = new ArrayList<String>();
 
+    private float encoderMax = 1;
+    private float encoderMin = 0;
+
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo teenage, mutant, ninja, turtles;
     private double leonardo=0.5;
@@ -120,10 +123,10 @@ public class Teleop extends OpMode{
         }
         else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
+            setMotorPower("Left Front",leftFront,leftpower,true);
+            setMotorPower("Right Front",rightFront,-rightpower,true);
+            setMotorPower("Left Back",leftBack,leftpower,true);
+            setMotorPower("Right Back",rightBack,-rightpower,true);
         }
         else if(gamepad1.left_trigger > .25)
         {
@@ -153,11 +156,12 @@ public class Teleop extends OpMode{
     //Controlling the arm
     public void arms ()
     {
-        if(gamepad2.right_trigger > 0.2)
+        double currentEncoder = 0.5;
+        if(gamepad2.right_trigger > 0.2 && currentEncoder < encoderMax)
         {
             setMotorPower("Arm", arm, 1,true);
         }
-        else if (gamepad2.left_trigger > 0.2)
+        else if (gamepad2.left_trigger > 0.2 && currentEncoder > encoderMin)
         {
 
             setMotorPower("Arm", arm, -1,true);
