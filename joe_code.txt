@@ -1,0 +1,64 @@
+public class Coordinates
+{
+    public float X;
+    public float Y;
+    public Coordinates() {}
+    public Coordinates(float x, float y)
+    {
+        this.X = x;
+        this.Y = y;
+    }
+}
+
+public class AutonomousCommand
+{
+    public final String LINE_DELIM = ",";
+    public final int LINE_PARAM_COUNT = 11;
+    public final int LINE_PARAM_OFFSET_TICKS = 0;
+    public final int LINE_PARAM_OFFSET_STICK_L_X = 1;
+    public final int LINE_PARAM_OFFSET_STICK_L_Y = 2;
+    public final int LINE_PARAM_OFFSET_STICK_R_X = 3;
+    public final int LINE_PARAM_OFFSET_STICK_R_Y = 4;
+    public final int LINE_PARAM_OFFSET_BUTTON_A = 5;
+    public final int LINE_PARAM_OFFSET_BUTTON_B = 6;
+    public final int LINE_PARAM_OFFSET_BUTTON_X = 7;
+    public final int LINE_PARAM_OFFSET_BUTTON_Y = 8;
+    public final int LINE_PARAM_OFFSET_TRIGGER_L = 9;
+    public final int LINE_PARAM_OFFSET_TRIGGER_R = 10;
+
+    public String PadName;
+    public int Ticks;
+    public Coordinates StickL;
+    public Coordinates StickR;
+    public boolean ButtonA;
+    public boolean ButtonB;
+    public boolean ButtonX;
+    public boolean ButtonY;
+    public boolean TriggerL;
+    public boolean TriggerR;
+    public float TriggerLOutput { get { return (TriggerL) ? 1.0F : 0.0F; } }
+
+    public AutonomousCommand() {}
+    public AutonomousCommand(int ticks, float stickL_X, float stickL_Y, float stickR_X, float stickR_Y, boolean buttonA, boolean buttonB, boolean buttonX, boolean buttonY, boolean triggerL, boolean triggerR)
+    {
+        this.Ticks = ticks;
+        this.StickL = new Coordinates(stickL_X, stickL_Y);
+        this.ButtonA = buttonA;
+    }
+
+    public boolean Load(String line)
+    {
+        return Load(line.split(LINE_DELIM));
+    }
+    public boolean Load(String[] line)
+    {
+        boolean returnValue = false;
+        if (line.length == LINE_PARAM_COUNT)
+        {
+            this.Ticks = Integer.parseInt(line[LINE_PARAM_OFFSET_TICKS]);
+            this.StickL = new Coordinates(Float.parseFloat(line[LINE_PARAM_OFFSET_STICK_L_X]), Float.parseFloat(line[LINE_PARAM_OFFSET_STICK_L_Y]));
+            returnValue = true;
+        }
+        return returnValue;
+    }
+}
