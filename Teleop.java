@@ -45,7 +45,6 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo rosencrantz, guildenstern;
     private double hamlet=0.75;
     private double ophelia=0.75;
     private double leftpower=1.0;
