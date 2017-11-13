@@ -1,0 +1,6 @@
+Connecting with Teleop:
+getVar:(Variable name)
+setVar:(Variable name)
+
+Would set the gamepad inputs and get the sensor outputs.
+sets built-in variable "get" to

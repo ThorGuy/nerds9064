@@ -45,7 +45,7 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo rosencrantz, guildenstern;
+    private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
     private double hamlet=0.75;
     private double ophelia=0.75;
     private double leftpower=1.0;
@@ -78,13 +78,10 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
-<<<<<<< HEAD
             //arms();
             heroesinahalfshellturtlepower();
-=======
             arms();
             //heroesinahalfshellturtlepower();
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
         }
 
     }
@@ -195,10 +192,7 @@ public class Teleop extends OpMode{
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
-<<<<<<< HEAD
         rosencrantz=null;
-=======
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
         if(test){
 
         }else{
@@ -221,35 +215,25 @@ public class Teleop extends OpMode{
             rightFront = null;
             leftBack = null;
             rightBack = null;
-<<<<<<< HEAD
             guildenstern=null;
-=======
             teenage=null;
             mutant=null;
             ninja=null;
             turtles=null;
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
-<<<<<<< HEAD
-            //arm = hardwareMap.dcMotor.get("arm");
 
             rosencrantz=hardwareMap.servo.get("servo1");
             guildenstern=hardwareMap.servo.get("servo2");
 
-
-=======
             arm = hardwareMap.dcMotor.get("arm");
-            /*
             teenage=hardwareMap.servo.get("servo1");
             mutant=hardwareMap.servo.get("servo2");
             ninja=hardwareMap.servo.get("servo3");
             turtles=hardwareMap.servo.get("servo4");
-            */
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
         }
     }
     //Converts a degree value to an x and y value on a circle with a radius of 1.
