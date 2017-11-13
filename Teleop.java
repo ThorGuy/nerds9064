@@ -103,15 +103,15 @@ public class Teleop extends OpMode{
         if(gamepad1.left_stick_x > .25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
         {
             setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
+            setMotorPower("Right Front",rightFront,-rightpower,true);
+            setMotorPower("Left Back",leftBack,leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
         }
         else if(gamepad1.left_stick_x < -.25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
         {
             setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
+            setMotorPower("Right Front",rightFront,rightpower,true);
+            setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
         else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
