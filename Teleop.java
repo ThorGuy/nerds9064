@@ -47,7 +47,7 @@ public class Teleop extends OpMode{
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
     private double hamlet=0.6;
-    private double ophelia=0.3;
+    private double ophelia=0.4;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
@@ -181,8 +181,8 @@ public class Teleop extends OpMode{
             guildenstern.setPosition(ophelia);
             if(!rottenindenmark && gamepad2.b)
             {
-                hamlet=.9-hamlet;
-                ophelia=.9-hamlet;
+                hamlet=1-hamlet;
+                ophelia=1-hamlet;
 
             }
             rottenindenmark=gamepad2.b;
@@ -224,10 +224,7 @@ public class Teleop extends OpMode{
 
            guildenstern=null;
 
-            teenage=null;
-            mutant=null;
-            ninja=null;
-            turtles=null;
+
 
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
@@ -248,11 +245,8 @@ public class Teleop extends OpMode{
             arm = hardwareMap.dcMotor.get("arm");
 
 
-            arm = hardwareMap.dcMotor.get("arm");
-            teenage=hardwareMap.servo.get("servo1");
-            mutant=hardwareMap.servo.get("servo2");
-            ninja=hardwareMap.servo.get("servo3");
-            turtles=hardwareMap.servo.get("servo4");
+
+
 
         }
     }
