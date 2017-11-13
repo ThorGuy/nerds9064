@@ -78,7 +78,6 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
-
             tobeornottobe();
             arms();
 
@@ -194,8 +193,6 @@ public class Teleop extends OpMode{
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
 
-        rosencrantz=null;
-
         if(test){
 
         }else{
@@ -274,7 +271,6 @@ public class Teleop extends OpMode{
             if (test) {
                 //Turns everything off once it reaches the end of the file
                 if (fakeIn != null) {
-                    //Test to see if the inputs need to be switched
 
                     //File reading
                     if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
