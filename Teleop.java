@@ -78,13 +78,10 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
-<<<<<<< HEAD
-            //arms();
-            heroesinahalfshellturtlepower();
-=======
+            tobeornottobe();
             arms();
-            //heroesinahalfshellturtlepower();
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
+
+
         }
 
     }
@@ -106,15 +103,15 @@ public class Teleop extends OpMode{
         if(gamepad1.left_stick_x > .25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
         {
             setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
+            setMotorPower("Right Front",rightFront,-rightpower,true);
+            setMotorPower("Left Back",leftBack,leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
         }
         else if(gamepad1.left_stick_x < -.25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
         {
             setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
+            setMotorPower("Right Front",rightFront,rightpower,true);
+            setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
         else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
@@ -160,11 +157,11 @@ public class Teleop extends OpMode{
     public void arms ()
     {
         double currentEncoder = 0.5;
-        if(gamepad2.right_trigger > 0.2 && currentEncoder < encoderMax)
+        if(gamepad2.left_bumper && currentEncoder < encoderMax && gamepad2.left_trigger < .2)
         {
             setMotorPower("Arm", arm, 1,true);
         }
-        else if (gamepad2.left_trigger > 0.2 && currentEncoder > encoderMin)
+        else if (gamepad2.left_trigger > 0.2 && currentEncoder > encoderMin && !gamepad2.left_bumper)
         {
 
             setMotorPower("Arm", arm, -1,true);
@@ -176,7 +173,7 @@ public class Teleop extends OpMode{
 
     }
     //Servo stuff
-    public void heroesinahalfshellturtlepower ()
+    public void tobeornottobe ()
     {
          //False until we find out everything about the servos, which direction they turn, etc.
             rosencrantz.setPosition(hamlet);
@@ -195,10 +192,7 @@ public class Teleop extends OpMode{
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
-<<<<<<< HEAD
-        rosencrantz=null;
-=======
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
+
         if(test){
 
         }else{
@@ -221,35 +215,24 @@ public class Teleop extends OpMode{
             rightFront = null;
             leftBack = null;
             rightBack = null;
-<<<<<<< HEAD
+
             guildenstern=null;
-=======
-            teenage=null;
-            mutant=null;
-            ninja=null;
-            turtles=null;
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
+
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
-<<<<<<< HEAD
+
             //arm = hardwareMap.dcMotor.get("arm");
 
             rosencrantz=hardwareMap.servo.get("servo1");
             guildenstern=hardwareMap.servo.get("servo2");
 
 
-=======
+
             arm = hardwareMap.dcMotor.get("arm");
-            /*
-            teenage=hardwareMap.servo.get("servo1");
-            mutant=hardwareMap.servo.get("servo2");
-            ninja=hardwareMap.servo.get("servo3");
-            turtles=hardwareMap.servo.get("servo4");
-            */
->>>>>>> f1701d1fd5eabe4332fdf0797f4eeba62ebb71be
+
         }
     }
     //Converts a degree value to an x and y value on a circle with a radius of 1.
