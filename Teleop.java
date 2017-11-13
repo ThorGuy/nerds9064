@@ -41,15 +41,13 @@ public class Teleop extends OpMode{
     private ArrayList<String> inArgs = new ArrayList<String>();
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo teenage, mutant, ninja, turtles;
-    private double leonardo=0.5;
-    private double michaelangelo=0.5;
-    private double donatello=0.5;
-    private double raphael=0.5;
+    private Servo rosencrantz, guildenstern;
+    private double hamlet=0.75;
+    private double ophelia=0.75;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
-    private boolean mastersplinter=false;
+    private boolean rottenindenmark=false;
     private boolean autonomous;
 
     public void init(){
@@ -75,7 +73,7 @@ public class Teleop extends OpMode{
         }else {
             wheels();
             //arms();
-            //heroesinahalfshellturtlepower();
+            heroesinahalfshellturtlepower();
         }
 
     }
@@ -168,28 +166,24 @@ public class Teleop extends OpMode{
     //Servo stuff
     public void heroesinahalfshellturtlepower ()
     {
-        if(false) { //False until we find out everything about the servos, which direction they turn, etc.
-            teenage.setPosition(leonardo);
-            mutant.setPosition(michaelangelo);
-            ninja.setPosition(donatello);
-            turtles.setPosition(raphael);
-            if(!mastersplinter && gamepad2.b)
+         //False until we find out everything about the servos, which direction they turn, etc.
+            rosencrantz.setPosition(hamlet);
+            guildenstern.setPosition(ophelia);
+            if(!rottenindenmark && gamepad2.b)
             {
-                leonardo=1-leonardo;
-                michaelangelo=1-michaelangelo;
-                donatello=1-donatello;
-                raphael=1-raphael;
+                hamlet=1-hamlet;
+                ophelia=1-ophelia;
 
             }
-            mastersplinter=gamepad2.b;
+            rottenindenmark=gamepad2.b;
 
-        }
+
 
     }
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
-        turtles=null;
+        rosencrantz=null;
         if(test){
 
         }else{
@@ -212,21 +206,18 @@ public class Teleop extends OpMode{
             rightFront = null;
             leftBack = null;
             rightBack = null;
-            teenage=null;
-            mutant=null;
-            ninja=null;
+            guildenstern=null;
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
             rightFront = hardwareMap.dcMotor.get("rightFront");
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
             //arm = hardwareMap.dcMotor.get("arm");
-            /*
-            teenage=hardwareMap.servo.get("servo1");
-            mutant=hardwareMap.servo.get("servo2");
-            ninja=hardwareMap.servo.get("servo3");
-            turtles=hardwareMap.servo.get("servo4");
-            */
+
+            rosencrantz=hardwareMap.servo.get("servo1");
+            guildenstern=hardwareMap.servo.get("servo2");
+
+
         }
     }
     //Converts a degree value to an x and y value on a circle with a radius of 1.
