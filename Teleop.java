@@ -45,8 +45,9 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private double hamlet=0.75;
-    private double ophelia=0.75;
+    private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
+    private double hamlet=0.6;
+    private double ophelia=0.3;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
@@ -77,6 +78,7 @@ public class Teleop extends OpMode{
             //TODO: autonomous (Might be fine if we do the file input)
         }else {
             wheels();
+
             tobeornottobe();
             arms();
 
@@ -179,8 +181,8 @@ public class Teleop extends OpMode{
             guildenstern.setPosition(ophelia);
             if(!rottenindenmark && gamepad2.b)
             {
-                hamlet=1-hamlet;
-                ophelia=1-ophelia;
+                hamlet=.9-hamlet;
+                ophelia=.9-hamlet;
 
             }
             rottenindenmark=gamepad2.b;
@@ -191,6 +193,8 @@ public class Teleop extends OpMode{
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
+
+        rosencrantz=null;
 
         if(test){
 
@@ -215,7 +219,15 @@ public class Teleop extends OpMode{
             leftBack = null;
             rightBack = null;
 
+
             guildenstern=null;
+
+           guildenstern=null;
+
+            teenage=null;
+            mutant=null;
+            ninja=null;
+            turtles=null;
 
         }else{
             leftFront = hardwareMap.dcMotor.get("leftFront");
@@ -223,14 +235,24 @@ public class Teleop extends OpMode{
             leftBack = hardwareMap.dcMotor.get("leftBack");
             rightBack = hardwareMap.dcMotor.get("rightBack");
 
+
             //arm = hardwareMap.dcMotor.get("arm");
+
 
             rosencrantz=hardwareMap.servo.get("servo1");
             guildenstern=hardwareMap.servo.get("servo2");
 
 
 
+
             arm = hardwareMap.dcMotor.get("arm");
+
+
+            arm = hardwareMap.dcMotor.get("arm");
+            teenage=hardwareMap.servo.get("servo1");
+            mutant=hardwareMap.servo.get("servo2");
+            ninja=hardwareMap.servo.get("servo3");
+            turtles=hardwareMap.servo.get("servo4");
 
         }
     }
