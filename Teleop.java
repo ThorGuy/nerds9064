@@ -72,7 +72,7 @@ public class Teleop extends OpMode{
         runTime.reset(); //Reset the timer
     }
 
-    public void loop() throws{
+    public void loop(){
         getInputs(); //Read inputs from a file if necessary
         if(autonomous){
             //TODO: autonomous (Might be fine if we do the file input)
