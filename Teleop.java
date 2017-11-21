@@ -45,7 +45,7 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo rosencrantz, guildenstern;
+    private Servo rosencrantz, guildenstern, gemArm;
     private double hamlet=0.5;
     private double ophelia=0.5;
     private double leftpower=1.0;
@@ -72,11 +72,14 @@ public class Teleop extends OpMode{
         runTime.reset(); //Reset the timer
     }
 
-    public void loop(){
+    public void loop() throws{
         getInputs(); //Read inputs from a file if necessary
         if(autonomous){
             //TODO: autonomous (Might be fine if we do the file input)
-        }else {
+            try {
+                noInputAuto();
+            }catch(InterruptedException e){}
+        }else{
             wheels();
 
             tobeornottobe();
@@ -198,7 +201,35 @@ public class Teleop extends OpMode{
     }
 
 
+public void noInputAuto() throws InterruptedException {
 
+    /*
+    TODO:
+    [ ] Drop arm
+    [ ] Sense gem color
+    [ ] Sense picture
+    [ ] Turn robot to knock over correct gem
+    [ ] Raise arm
+    [ ] Drive to towers
+    [ ] line up glyph
+    [ ] insert glyph
+    [ ] back up but stay in safe zone
+
+     */
+
+    setMotorPower("Left Front",leftFront,-0.5,true);
+    setMotorPower("Right Front",rightFront,0.5,true);
+    setMotorPower("Left Back",leftBack,-0.5,true);
+    setMotorPower("Right Back",rightBack,0.5,true);
+
+    Thread.sleep(2000);
+
+    setMotorPower("Left Front",leftFront,0,true);
+    setMotorPower("Right Front",rightFront,0,true);
+    setMotorPower("Left Back",leftBack,0,true);
+    setMotorPower("Right Back",rightBack,0,true);
+
+}
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
@@ -250,6 +281,8 @@ public class Teleop extends OpMode{
 
             arm = hardwareMap.dcMotor.get("arm");
 
+            gemArm = hardwareMap.servo.get("");
+
 
 
 
@@ -279,7 +312,7 @@ public class Teleop extends OpMode{
         try {
             if (test) {
                 //Turns everything off once it reaches the end of the file
-                if (fakeIn != null) {
+                if (false&&fakeIn != null) {
                     //Test to see if the inputs need to be switched
 
                     //File reading
