@@ -17,15 +17,8 @@ import java.util.Arrays;
     //ALL HAIL THOR
 
 /*TODO:
- - TODO: MAKE AUTONOMOUS PLAN IT IS ESSENTIAL THAT WE DO THIS OTHERWISE
- - TODO: THE ENTIRE WORLD WILL COLLAPSE IN ON ITSELF IN A GIANT BLACK HOLE
- - TODO: ALL BECAUSE YOU DIDN'T THINK OF A PLAN FOR LIKE THREE MINUTES AND
- - TODO: THEN FUTURE CIVILIZATIONS WILL BE LIKE "LOL HUMANITY GOT SCREWED
- - TODO: OVER BY SOME PREPUBESCENT PROGRAMMER WHO DIDN'T BOTHER TO THINK OF
- - TODO: AN AUTONOMOUS PLAN." AND THAT WOULD SUCK MORE THAN A FLOWBEE.
- - Make artificial servo output methods.
- - Create a file-reading system for artifical input
- - Create a format for files to read
+ - TODO: Make autonomous code (actual code not our own stuff)
+ - TODO: Make sure the old autonomous stuff doesn't run
  */
 
 
@@ -53,6 +46,8 @@ public class Teleop extends OpMode{
     private boolean toggle=false;
     private boolean rottenindenmark=false;
     private boolean autonomous;
+    private boolean team; //true = red, false = blue
+    private int startPosition;
 
     public void init(){
 
@@ -75,15 +70,15 @@ public class Teleop extends OpMode{
     public void loop(){
         getInputs(); //Read inputs from a file if necessary
         if(autonomous){
-            //TODO: autonomous (Might be fine if we do the file input)
-        }else {
+            if(team){ //Might need to negate this variable
+                //TODO: somehow reverse turn directions here (might have to be handled in a separate method.)
+            }
+
+        }else{
             wheels();
             tobeornottobe();
             arms();
-
-
         }
-
     }
     //Drive train
     public void wheels()
@@ -270,7 +265,7 @@ public class Teleop extends OpMode{
         try {
             if (test) {
                 //Turns everything off once it reaches the end of the file
-                if (fakeIn != null) {
+                if (false&&fakeIn != null) {
 
                     //File reading
                     if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
