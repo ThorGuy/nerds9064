@@ -191,7 +191,7 @@ public class Teleop extends OpMode{
             }
             else if(gamepad2.x)
             {
-                hamlet=128;
+                hamlet=115;
                 ophelia=128;
                 rosencrantz.setPosition(hamlet);
                 guildenstern.setPosition(ophelia);
