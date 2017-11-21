@@ -45,9 +45,9 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
-    private double hamlet=0.6;
-    private double ophelia=0.4;
+    private Servo rosencrantz, guildenstern;
+    private double hamlet=0.5;
+    private double ophelia=0.5;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
@@ -179,27 +179,35 @@ public class Teleop extends OpMode{
          //False until we find out everything about the servos, which direction they turn, etc.
             rosencrantz.setPosition(hamlet);
             guildenstern.setPosition(ophelia);
-            if(!rottenindenmark && gamepad2.b)
+            if(gamepad2.b)
             {
-                hamlet=1-hamlet;
-                ophelia=1-hamlet;
+                hamlet=0;
+                ophelia=250;
+                rosencrantz.setPosition(hamlet);
+                guildenstern.setPosition(ophelia);
+            }
+            else if(gamepad2.x)
+            {
+                hamlet=128;
+                ophelia=128;
+                rosencrantz.setPosition(hamlet);
+                guildenstern.setPosition(ophelia);
 
             }
-            rottenindenmark=gamepad2.b;
-
-
 
     }
+
+
+
+
     //Won't send power to motors if test mode is on
-    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
-        if(tel)telemetry.addData(motorName+" power: ", ""+power);
+    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
+        if (tel) {
+            telemetry.addData(motorName + " power: ", "" + power);
 
-        rosencrantz=null;
-
-        if(test){
-
-        }else{
             motor.setPower(power);
+
+
         }
     }
     //Won't send power to servos if test mode is on
@@ -220,9 +228,7 @@ public class Teleop extends OpMode{
             rightBack = null;
 
 
-            guildenstern=null;
 
-           guildenstern=null;
 
 
 
