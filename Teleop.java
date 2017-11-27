@@ -185,6 +185,8 @@ public class Teleop extends OpMode{
                 ophelia=250;
                 rosencrantz.setPosition(hamlet);
                 guildenstern.setPosition(ophelia);
+                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
+                telemetry.addData("Servo2 is at", guildenstern.getPosition());
             }
             else if(gamepad2.x)
             {
@@ -192,6 +194,8 @@ public class Teleop extends OpMode{
                 ophelia=128;
                 rosencrantz.setPosition(hamlet);
                 guildenstern.setPosition(ophelia);
+                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
+                telemetry.addData("Servo2 is at", guildenstern.getPosition());
 
             }
 
