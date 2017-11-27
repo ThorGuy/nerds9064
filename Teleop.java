@@ -191,37 +191,6 @@ public class Teleop extends OpMode{
 
     }
 
-
-public void noInputAuto() throws InterruptedException {
-
-    /*
-    TODO:
-    [ ] Drop arm
-    [ ] Sense gem color
-    [ ] Sense picture
-    [ ] Turn robot to knock over correct gem
-    [ ] Raise arm
-    [ ] Drive to towers
-    [ ] line up glyph
-    [ ] insert glyph
-    [ ] back up but stay in safe zone
-
-     */
-
-    setMotorPower("Left Front",leftFront,-0.5,true);
-    setMotorPower("Right Front",rightFront,0.5,true);
-    setMotorPower("Left Back",leftBack,-0.5,true);
-    setMotorPower("Right Back",rightBack,0.5,true);
-
-    Thread.sleep(2000);
-
-    setMotorPower("Left Front",leftFront,0,true);
-    setMotorPower("Right Front",rightFront,0,true);
-    setMotorPower("Left Back",leftBack,0,true);
-    setMotorPower("Right Back",rightBack,0,true);
-
-}
-
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
         if (tel) telemetry.addData(motorName + " power: ", "" + power);
