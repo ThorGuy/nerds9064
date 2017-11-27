@@ -41,6 +41,9 @@ public class Teleop extends OpMode{
     private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
     private double hamlet=0.6;
     private double ophelia=0.4;
+    private Servo rosencrantz, guildenstern, gemArm;
+    private double hamlet=0.5;
+    private double ophelia=0.5;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
@@ -52,7 +55,6 @@ public class Teleop extends OpMode{
     public void init(){
 
         Initialize(test); //Initialize servos and motors
-        autonomous=false;
 
         //Initialize file reading
         try{
@@ -173,21 +175,38 @@ public class Teleop extends OpMode{
          //False until we find out everything about the servos, which direction they turn, etc.
             rosencrantz.setPosition(hamlet);
             guildenstern.setPosition(ophelia);
-            if(!rottenindenmark && gamepad2.b)
+            if(gamepad2.b)
             {
-                hamlet=1-hamlet;
-                ophelia=1-hamlet;
+                hamlet=0;
+                ophelia=250;
+                rosencrantz.setPosition(hamlet);
+                guildenstern.setPosition(ophelia);
+                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
+                telemetry.addData("Servo2 is at", guildenstern.getPosition());
+            }
+            else if(gamepad2.x)
+            {
+                hamlet=115;
+                ophelia=128;
+                rosencrantz.setPosition(hamlet);
+                guildenstern.setPosition(ophelia);
+                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
+                telemetry.addData("Servo2 is at", guildenstern.getPosition());
 
             }
-            rottenindenmark=gamepad2.b;
-
-
 
     }
+<<<<<<< HEAD
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
         if(tel)telemetry.addData(motorName+" power: ", ""+power);
 
+=======
+
+    //Won't send power to motors if test mode is on
+    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
+        if (tel) telemetry.addData(motorName + " power: ", "" + power);
+>>>>>>> brennan
         if(test){
 
         }else{
@@ -212,9 +231,7 @@ public class Teleop extends OpMode{
             rightBack = null;
 
 
-            guildenstern=null;
 
-           guildenstern=null;
 
 
 
@@ -235,6 +252,8 @@ public class Teleop extends OpMode{
 
 
             arm = hardwareMap.dcMotor.get("arm");
+
+            //gemArm = hardwareMap.servo.get("gemArm");
 
 
 
@@ -266,6 +285,10 @@ public class Teleop extends OpMode{
             if (test) {
                 //Turns everything off once it reaches the end of the file
                 if (false&&fakeIn != null) {
+<<<<<<< HEAD
+=======
+                    //Test to see if the inputs need to be switched
+>>>>>>> brennan
 
                     //File reading
                     if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
