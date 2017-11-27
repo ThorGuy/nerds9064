@@ -52,12 +52,10 @@ public class Teleop extends OpMode{
     private double rightpower=1.0;
     private boolean toggle=false;
     private boolean rottenindenmark=false;
-    private boolean autonomous;
 
     public void init(){
 
         Initialize(test); //Initialize servos and motors
-        autonomous=false;
 
         //Initialize file reading
         try{
@@ -74,20 +72,9 @@ public class Teleop extends OpMode{
 
     public void loop(){
         getInputs(); //Read inputs from a file if necessary
-        if(autonomous){
-            //TODO: autonomous (Might be fine if we do the file input)
-            try {
-                noInputAuto();
-            }catch(InterruptedException e){}
-        }else{
-            wheels();
-
-            tobeornottobe();
-            arms();
-
-
-        }
-
+        wheels();
+        tobeornottobe();
+        arms();
     }
     //Drive train
     public void wheels()
@@ -233,12 +220,11 @@ public void noInputAuto() throws InterruptedException {
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
-        if (tel) {
-            telemetry.addData(motorName + " power: ", "" + power);
+        if (tel) telemetry.addData(motorName + " power: ", "" + power);
+        if(test){
 
+        }else{
             motor.setPower(power);
-
-
         }
     }
     //Won't send power to servos if test mode is on
@@ -281,7 +267,7 @@ public void noInputAuto() throws InterruptedException {
 
             arm = hardwareMap.dcMotor.get("arm");
 
-            gemArm = hardwareMap.servo.get("");
+            //gemArm = hardwareMap.servo.get("gemArm");
 
 
 
