@@ -38,9 +38,6 @@ public class Teleop extends OpMode{
     private float encoderMin = 0;
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
-    private Servo rosencrantz, guildenstern, teenage, mutant, ninja, turtles;
-    private double hamlet=0.6;
-    private double ophelia=0.4;
     private Servo rosencrantz, guildenstern, gemArm;
     private double hamlet=0.5;
     private double ophelia=0.5;
@@ -71,16 +68,9 @@ public class Teleop extends OpMode{
 
     public void loop(){
         getInputs(); //Read inputs from a file if necessary
-        if(autonomous){
-            if(team){ //Might need to negate this variable
-                //TODO: somehow reverse turn directions here (might have to be handled in a separate method.)
-            }
-
-        }else{
-            wheels();
-            tobeornottobe();
-            arms();
-        }
+        wheels();
+        tobeornottobe();
+        arms();
     }
     //Drive train
     public void wheels()
@@ -196,17 +186,10 @@ public class Teleop extends OpMode{
             }
 
     }
-<<<<<<< HEAD
-    //Won't send power to motors if test mode is on
-    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel){
-        if(tel)telemetry.addData(motorName+" power: ", ""+power);
-
-=======
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
         if (tel) telemetry.addData(motorName + " power: ", "" + power);
->>>>>>> brennan
         if(test){
 
         }else{
@@ -285,10 +268,7 @@ public class Teleop extends OpMode{
             if (test) {
                 //Turns everything off once it reaches the end of the file
                 if (false&&fakeIn != null) {
-<<<<<<< HEAD
-=======
                     //Test to see if the inputs need to be switched
->>>>>>> brennan
 
                     //File reading
                     if (Double.parseDouble(inArgs.get(0)) <= runTime.milliseconds()) {
