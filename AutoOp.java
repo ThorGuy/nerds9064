@@ -11,10 +11,18 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 public class AutoOp extends LinearOpMode{
-    private DcMotor leftFront, leftBack, rightFront, rightBack, arm;
+    private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
     private Servo servo1, servo2;
     private ColorSensor gemSensor;
-    private boolean test = false;
+    private final boolean test = false;
+    private final short position = 0;
+    /* position value meanings:
+    _____
+   |0 | 2|
+Red|  |  |Blue
+   |1_|_3|
+
+     */
     public void runOpMode() throws InterruptedException{
         Initialize();
         test();
@@ -23,17 +31,48 @@ public class AutoOp extends LinearOpMode{
     private void noInputAuto()throws InterruptedException {
     /*
     TODO: List of Actions
-    [ ] Drop arm
-    [ ] Sense gem color
+    x = pseudocode
+    o = tested and works
+
+    [x] Drop arm
+    [x] Sense gem color
+    [x] Turn robot to knock over correct gem
+    [x] Raise arm
     [ ] Sense picture
-    [ ] Turn robot to knock over correct gem
-    [ ] Raise arm
     [ ] Drive to towers
     [ ] line up glyph
     [ ] insert glyph
     [ ] back up but stay in safe zone
     TODO: End list
      */
+        setMotorPower("gemArm", gemArm, 0.5, true);
+        Thread.sleep(500);
+        setMotorPower("gemArm", gemArm, 0, true);
+        if(gemSensor.red()>127){
+            clockwise(0.1, 200);
+            countclock(0.1,200);
+        }else{
+            countclock(0.1,200);
+            clockwise(0.1, 200);
+        }
+        setMotorPower("gemArm", gemArm, -0.5, true);
+        Thread.sleep(500);
+        setMotorPower("gemArm", gemArm, 0, true);
+        //TODO: get the picture thing to work
+        if(position>2){
+            if(position%2==0){
+
+            }else{
+
+            }
+        }else{
+            if(position%2==0){
+
+            }else{
+
+            }
+        }
+
     }
     public void test()throws InterruptedException{
         forward(0.5,2000);
@@ -145,6 +184,7 @@ public class AutoOp extends LinearOpMode{
             leftBack = null;
             rightBack = null;
             arm = null;
+            gemArm = null;
             servo1 = null;
             servo2 = null;
             gemSensor = null;
@@ -156,6 +196,7 @@ public class AutoOp extends LinearOpMode{
             servo1=hardwareMap.servo.get("servo1");
             servo2=hardwareMap.servo.get("servo2");
             arm = hardwareMap.dcMotor.get("arm");
+            gemArm = hardwareMap.dcMotor.get("gemArm");
             gemSensor = hardwareMap.colorSensor.get("gemSensor");
         }
     }
