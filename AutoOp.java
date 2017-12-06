@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 
+import android.graphics.Camera;
+import android.hardware.camera2.CameraDevice;
+import android.provider.ContactsContract;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -14,6 +18,7 @@ public class AutoOp extends LinearOpMode{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
     private Servo servo1, servo2;
     private ColorSensor gemSensor;
+    private GemColorDetector sensor;
     private final boolean test = false;
     private final short position = 0;
     /* position value meanings:
