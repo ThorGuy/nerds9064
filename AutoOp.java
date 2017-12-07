@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 
+import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.hardware.camera2.CameraDevice;
 import android.provider.ContactsContract;
@@ -10,11 +11,13 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import for_camera_opmodes.LinearOpModeCamera;
+
 /**
  * Created by ntpy5 on 11/27/2017.
  */
 
-public class AutoOp extends LinearOpMode{
+public class AutoOp extends LinearOpModeCamera{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
     private Servo servo1, servo2;
     private ColorSensor gemSensor;
@@ -50,10 +53,42 @@ Red|  |  |Blue
     [ ] back up but stay in safe zone
     TODO: End list
      */
+
+        //TODO: get the picture thing to work
+        right(0.5, 500);
+        gem();
+        if(position%2==0){
+            right(0.5,500);
+            forward(0.5,100);
+            servo1.setPosition(0);
+            servo2.setPosition(250);
+            backward(0.5,100);
+        }else{
+            right(0.5,500);
+            clockwise(0.5,500);
+            left(0.5,500);
+            forward(0.5,100);
+            servo1.setPosition(0);
+            servo2.setPosition(250);
+            backward(0.5,100);
+        }
+
+    }
+
+    public void gem() throws InterruptedException{
+
         setMotorPower("gemArm", gemArm, 0.5, true);
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
-        if(gemSensor.red()>127){
+        boolean blueOnLeft;
+        if(isCameraAvailable()){
+            Bitmap rgbImage;
+            rgbImage = convertYuvImageToRgb(yuvImage, width, height, 2);
+            blueOnLeft = sensor.blueIsOnLeft(rgbImage);
+        }else{
+            blueOnLeft=Math.random()>0.5;
+        }
+        if(blueOnLeft){
             clockwise(0.1, 200);
             countclock(0.1,200);
         }else{
@@ -63,14 +98,9 @@ Red|  |  |Blue
         setMotorPower("gemArm", gemArm, -0.5, true);
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
-        //TODO: get the picture thing to work
-        if(position%2==0){
-
-        }else{
-            
-        }
 
     }
+
     public void test()throws InterruptedException{
         forward(0.5,2000);
         backward(0.5,2000);
@@ -179,6 +209,14 @@ Red|  |  |Blue
         }
     }
     private void Initialize(){
+        setCameraDownsampling(8);
+
+
+        telemetry.addLine("Wait for camera to finish initializing!");
+        telemetry.update();
+        startCamera();
+        telemetry.addLine("Camera ready!");
+        telemetry.update();
         if(test) { //Motors and Servos get set to null in testing mode so the phone doesn't try and look for them
             leftFront = null;
             rightFront = null;
