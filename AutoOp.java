@@ -64,18 +64,10 @@ Red|  |  |Blue
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
         //TODO: get the picture thing to work
-        if(position>2){
-            if(position%2==0){
+        if(position%2==0){
 
-            }else{
-
-            }
         }else{
-            if(position%2==0){
-
-            }else{
-
-            }
+            
         }
 
     }
@@ -115,6 +107,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void right(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,-power,true);
         setMotorPower("Left Back",leftBack,power,true);
@@ -128,6 +121,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void left(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,power,true);
         setMotorPower("Right Front",rightFront,power,true);
         setMotorPower("Left Back",leftBack,-power,true);
@@ -141,6 +135,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void clockwise(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,-power,true);
         setMotorPower("Left Back",leftBack,-power,true);
@@ -154,6 +149,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void countclock(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,power,true);
         setMotorPower("Right Front",rightFront,power,true);
         setMotorPower("Left Back",leftBack,power,true);
