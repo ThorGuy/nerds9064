@@ -46,7 +46,7 @@ Red|  |  |Blue
     [x] Sense gem color
     [x] Turn robot to knock over correct gem
     [x] Raise arm
-    [ ] Sense picture //TODO:
+    [ ] TODO: Sense picture
     [x] Drive to towers
     [x] line up glyph
     [x] insert glyph
@@ -58,10 +58,8 @@ Red|  |  |Blue
         right(0.5, 500);
         gem();
         if(position%2==0){
-            
-            right(0.5,500);
 
-            glyph();
+            right(0.5,500);
 
         }else{
 
@@ -69,9 +67,9 @@ Red|  |  |Blue
             clockwise(0.5,500);
             left(0.5,500);
 
-            glyph();
-
         }
+
+        glyph();
 
     }
 

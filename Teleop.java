@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 public class Teleop extends OpMode{
 
-    final private boolean test = false;
+    private boolean test = false;
 
     final private String autoFileName = "test.auto";
 
@@ -67,10 +67,14 @@ public class Teleop extends OpMode{
     }
 
     public void loop(){
+        boolean testToggle=true;
         getInputs(); //Read inputs from a file if necessary
         wheels();
         tobeornottobe();
         arms();
+
+        if(!testToggle&&gamepad2.x)test=!test;
+        testToggle=gamepad2.x;
     }
     //Drive train
     public void wheels()
@@ -103,17 +107,17 @@ public class Teleop extends OpMode{
         }
         else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
             setMotorPower("Left Back",leftBack,leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
+        }
+        else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
+        {
+            setMotorPower("Left Front",leftFront,-leftpower,true);
+            setMotorPower("Right Front",rightFront,rightpower,true);
+            setMotorPower("Left Back",leftBack,-leftpower,true);
+            setMotorPower("Right Back",rightBack,rightpower,true);
         }
         else if(gamepad1.left_trigger > .25)
         {
