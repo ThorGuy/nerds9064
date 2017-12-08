@@ -46,11 +46,11 @@ Red|  |  |Blue
     [x] Sense gem color
     [x] Turn robot to knock over correct gem
     [x] Raise arm
-    [ ] Sense picture
-    [ ] Drive to towers
-    [ ] line up glyph
-    [ ] insert glyph
-    [ ] back up but stay in safe zone
+    [ ] Sense picture //TODO:
+    [x] Drive to towers
+    [x] line up glyph
+    [x] insert glyph
+    [x] back up but stay in safe zone
     TODO: End list
      */
 
@@ -58,20 +58,29 @@ Red|  |  |Blue
         right(0.5, 500);
         gem();
         if(position%2==0){
+            
             right(0.5,500);
-            forward(0.5,100);
-            servo1.setPosition(0);
-            servo2.setPosition(250);
-            backward(0.5,100);
+
+            glyph();
+
         }else{
+
             right(0.5,500);
             clockwise(0.5,500);
             left(0.5,500);
-            forward(0.5,100);
-            servo1.setPosition(0);
-            servo2.setPosition(250);
-            backward(0.5,100);
+
+            glyph();
+
         }
+
+    }
+
+    public void glyph() throws InterruptedException{
+
+        forward(0.5,100);
+        setServoPos("servo1",servo1,0,false);
+        setServoPos("servo2",servo2,250,false);
+        backward(0.5,100);
 
     }
 
@@ -200,7 +209,7 @@ Red|  |  |Blue
             motor.setPower(power);
         }
     }
-    private void setServoPower(String servoName, Servo servo, double power, boolean tel){
+    private void setServoPos(String servoName, Servo servo, double power, boolean tel){
         if(tel)telemetry.addData(servoName+" position: ", ""+power);
         if(test){
 
