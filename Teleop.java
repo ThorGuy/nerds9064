@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 public class Teleop extends OpMode{
 
-    private boolean test = false;
+    private boolean test = true;
 
     final private String autoFileName = "test.auto";
 
@@ -48,6 +48,7 @@ public class Teleop extends OpMode{
     private boolean autonomous;
     private boolean team; //true = red, false = blue
     private int startPosition;
+    private int orientation=0;
 
     public void init(){
 
@@ -68,7 +69,7 @@ public class Teleop extends OpMode{
 
     public void loop(){
         boolean testToggle=true;
-        getInputs(); //Read inputs from a file if necessary
+        //getInputs(); //Read inputs from a file if necessary
         wheels();
         tobeornottobe();
         arms();
@@ -80,40 +81,69 @@ public class Teleop extends OpMode{
     public void wheels()
     {
         //Speed toggle
-        if(!toggle&&gamepad1.a){
-                leftpower=1.5-leftpower;
-                rightpower=1.5-rightpower;
-
+        if(!toggle&&gamepad1.dpad_up){
+            leftpower=1.5-leftpower;
+            rightpower=1.5-rightpower;
         }
 
-        toggle=gamepad1.a;
+        toggle=gamepad1.dpad_up;
 
+        int dir = -1;
 
-
-        //Movement
         if(gamepad1.left_stick_x > .25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
-        {
+        {//right
+            dir=1;
+        }
+        else if(gamepad1.left_stick_x < -.25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
+        {//left
+            dir=3;
+        }
+        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
+        {//down
+            dir=0;
+        }
+        else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
+        {//up
+            dir=2;
+        }
+
+        if(gamepad1.y)orientation=0;
+        else
+        if(gamepad1.x)orientation=3;
+        else
+        if(gamepad1.a)orientation=2;
+        else
+        if(gamepad1.b)orientation=1;
+
+        if(dir!=-1){
+            dir=(dir+orientation)%4;
+        }
+        telemetry.addData("Direction: ",dir);
+        telemetry.addData("Orientation: ",orientation);
+        //Movement
+        if(dir==1)
+        {//right
             setMotorPower("Left Front",leftFront,-leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
             setMotorPower("Left Back",leftBack,leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
         }
-        else if(gamepad1.left_stick_x < -.25 && (Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)))
-        {
+        else if(dir==3)
+        {//left
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,rightpower,true);
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
-        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
+        else if(dir==0)
+        {//down
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
             setMotorPower("Left Back",leftBack,leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
-        else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
+        else if(dir==2)
+        {//up
             setMotorPower("Left Front",leftFront,-leftpower,true);
             setMotorPower("Right Front",rightFront,rightpower,true);
             setMotorPower("Left Back",leftBack,-leftpower,true);
@@ -167,33 +197,29 @@ public class Teleop extends OpMode{
     public void tobeornottobe ()
     {
          //False until we find out everything about the servos, which direction they turn, etc.
-            rosencrantz.setPosition(hamlet);
-            guildenstern.setPosition(ophelia);
-            if(gamepad2.b)
-            {
-                hamlet=0;
-                ophelia=250;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
-            }
-            else if(gamepad2.x)
-            {
-                hamlet=115;
-                ophelia=128;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
+        setServoPosition("servo1",rosencrantz,hamlet,true);
+        setServoPosition("servo2",guildenstern,ophelia,true);
+        if(gamepad2.b)
+        {
+            hamlet=0;
+            ophelia=250;
+            setServoPosition("servo1",rosencrantz,hamlet,true);
+            setServoPosition("servo2",guildenstern,ophelia,true);
+        }
+        else if(gamepad2.x)
+        {
+            hamlet=115;
+            ophelia=128;
+            setServoPosition("servo1",rosencrantz,hamlet,true);
+            setServoPosition("servo2",guildenstern,ophelia,true);
 
-            }
+        }
 
     }
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
-        if (tel) telemetry.addData(motorName + " power: ", "" + power);
+        if (tel) telemetry.addData(motorName + " power", "" + power);
         if(test){
 
         }else{
@@ -201,8 +227,8 @@ public class Teleop extends OpMode{
         }
     }
     //Won't send power to servos if test mode is on
-    public void setServoPower(String servoName, Servo servo, double power, boolean tel){
-        if(tel)telemetry.addData(servoName+" position: ", ""+power);
+    public void setServoPosition(String servoName, Servo servo, double power, boolean tel){
+        if(tel)telemetry.addData(servoName+" position", ""+power);
         if(test){
 
         }else{
