@@ -87,20 +87,30 @@ Red|  |  |Blue
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
         boolean blueOnLeft;
+
         if(isCameraAvailable()){
+
             Bitmap rgbImage;
             rgbImage = convertYuvImageToRgb(yuvImage, width, height, 2);
             blueOnLeft = sensor.blueIsOnLeft(rgbImage);
+
         }else{
+
             blueOnLeft=Math.random()>0.5;
+
         }
         if(blueOnLeft){
+
             clockwise(0.1, 200);
             countclock(0.1,200);
+
         }else{
+
             countclock(0.1,200);
             clockwise(0.1, 200);
+
         }
+
         setMotorPower("gemArm", gemArm, -0.5, true);
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
@@ -116,6 +126,7 @@ Red|  |  |Blue
         countclock(0.5,2000);
 
     }
+
     private void forward(double power, int time) throws InterruptedException{
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,power,true);
@@ -198,6 +209,7 @@ Red|  |  |Blue
         setMotorPower("Left Back",leftBack,0,true);
         setMotorPower("Right Back",rightBack,0,true);
     }
+
     private void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
         if (tel)telemetry.addData(motorName + " power: ", "" + power);
         if(test) {
@@ -214,6 +226,7 @@ Red|  |  |Blue
             servo.setPosition(power);
         }
     }
+
     private void Initialize(){
         setCameraDownsampling(8);
 
