@@ -13,9 +13,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import for_camera_opmodes.LinearOpModeCamera;
 
-/**
- * Created by ntpy5 on 11/27/2017.
- */
 
 public class AutoOp extends LinearOpModeCamera{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
@@ -24,7 +21,8 @@ public class AutoOp extends LinearOpModeCamera{
     private GemColorDetector sensor;
     private final boolean test = false;
     private final short position = 0;
-    /* position value meanings:
+    /*
+    position value meanings:
     _____
    |0 | 2|
 Red|  |  |Blue
@@ -57,6 +55,7 @@ Red|  |  |Blue
         //TODO: get the picture thing to work
         right(0.5, 500);
         gem();
+
         if(position%2==0){
 
             right(0.5,500);
