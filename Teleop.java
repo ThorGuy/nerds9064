@@ -219,25 +219,34 @@ public class Teleop extends OpMode{
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
-        if (tel) telemetry.addData(motorName + " power", "" + power + ", " + motor.getCurrentPosition());
+
         if(test){
 
+            if (tel) telemetry.addData(motorName + " power", "" + power);
+
         }else{
+
+            if (tel) telemetry.addData(motorName + " power", power + ", " + motor.getCurrentPosition());
+
             motor.setPower(power);
         }
+
     }
     //Won't send power to servos if test mode is on
     public void setServoPosition(String servoName, Servo servo, double power, boolean tel){
 
-        if(tel)telemetry.addData(servoName+" position", "" + power + ", " + servo.getPosition());
-
         if(test){
 
+            if(tel)telemetry.addData(servoName+" position", "" + power);
+
         }else{
+
+            if(tel)telemetry.addData(servoName+" position", power + ", " + servo.getPosition());
 
             servo.setPosition(power);
 
         }
+
     }
 
     public void Initialize(boolean test){
