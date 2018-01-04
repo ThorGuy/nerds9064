@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 public class Teleop extends OpMode{
 
-    private boolean test = true;
+    private boolean test = false;
 
     final private String autoFileName = "test.auto";
 
