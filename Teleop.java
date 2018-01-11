@@ -196,20 +196,20 @@ public class Teleop extends OpMode{
     //Servo stuff
     public void tobeornottobe ()
     {
-         //False until we find out everything about the servos, which direction they turn, etc.
+
         setServoPosition("servo1",rosencrantz,hamlet,true);
         setServoPosition("servo2",guildenstern,ophelia,true);
         if(gamepad2.b)
         {
             hamlet=0;
-            ophelia=250;
+            ophelia=1;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
         }
         else if(gamepad2.x)
         {
-            hamlet=115;
-            ophelia=128;
+            hamlet=0.5;
+            ophelia=0.5;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
 
