@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 
 import android.graphics.Bitmap;
-import android.graphics.Camera;
-import android.hardware.camera2.CameraDevice;
-import android.provider.ContactsContract;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -21,6 +16,7 @@ public class AutoOp extends LinearOpModeCamera{
     private GemColorDetector sensor;
     private final boolean test = false;
     private final short position = 0;
+    private final boolean RobotBroken=true;
     /*
     position value meanings:
     _____
@@ -30,6 +26,10 @@ Red|  |  |Blue
 
      */
     public void runOpMode() throws InterruptedException{
+        if(RobotBroken){
+            ForWhenRobotIsBroken();
+            return;
+        }
         Initialize();
         test();
         noInputAuto();
@@ -69,6 +69,12 @@ Red|  |  |Blue
         }
 
         glyph();
+
+    }
+
+    public void ForWhenRobotIsBroken() throws InterruptedException{
+
+        forward(0.5,500);
 
     }
 
