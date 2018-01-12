@@ -101,14 +101,14 @@ public class Teleop extends OpMode{
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
-        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
+        else if(gamepad1.left_stick_y <-.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
             setMotorPower("Left Front",leftFront,-leftpower,true);
             setMotorPower("Right Front",rightFront,rightpower,true);
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
         }
-        else if(gamepad1.left_stick_y < -.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
+        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
@@ -168,7 +168,7 @@ public class Teleop extends OpMode{
             if(gamepad2.b)
             {
                 hamlet=0;
-                ophelia=250;
+                ophelia=1;
                 rosencrantz.setPosition(hamlet);
                 guildenstern.setPosition(ophelia);
                 telemetry.addData("Servo1 is at", rosencrantz.getPosition());
@@ -176,8 +176,8 @@ public class Teleop extends OpMode{
             }
             else if(gamepad2.x)
             {
-                hamlet=115;
-                ophelia=128;
+                hamlet=.5;
+                ophelia=.5;
                 rosencrantz.setPosition(hamlet);
                 guildenstern.setPosition(ophelia);
                 telemetry.addData("Servo1 is at", rosencrantz.getPosition());
