@@ -1,22 +1,24 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import android.graphics.Bitmap;
+
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-/**
- * Created by ntpy5 on 11/27/2017.
- */
+import for_camera_opmodes.LinearOpModeCamera;
 
-public class AutoOp extends LinearOpMode{
+
+public class AutoOp extends LinearOpModeCamera{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
     private Servo servo1, servo2;
     private ColorSensor gemSensor;
+    private GemColorDetector sensor;
     private final boolean test = false;
     private final short position = 0;
-    /* position value meanings:
+    private final boolean RobotBroken=true;
+    /*
+    position value meanings:
     _____
    |0 | 2|
 Red|  |  |Blue
@@ -24,6 +26,10 @@ Red|  |  |Blue
 
      */
     public void runOpMode() throws InterruptedException{
+        if(RobotBroken){
+            ForWhenRobotIsBroken();
+            return;
+        }
         Initialize();
         test();
         noInputAuto();
@@ -38,42 +44,85 @@ Red|  |  |Blue
     [x] Sense gem color
     [x] Turn robot to knock over correct gem
     [x] Raise arm
-    [ ] Sense picture
-    [ ] Drive to towers
-    [ ] line up glyph
-    [ ] insert glyph
-    [ ] back up but stay in safe zone
+    [ ] TODO: Sense picture
+    [x] Drive to towers
+    [x] line up glyph
+    [x] insert glyph
+    [x] back up but stay in safe zone
     TODO: End list
      */
+
+        //TODO: get the picture thing to work
+        right(0.5, 500);
+        gem();
+
+        if(position%2==0){
+
+            right(0.5,500);
+
+        }else{
+
+            right(0.5,500);
+            clockwise(0.5,500);
+            left(0.5,500);
+
+        }
+
+        glyph();
+
+    }
+
+    public void ForWhenRobotIsBroken() throws InterruptedException{
+
+        forward(0.5,1500);
+
+    }
+
+    public void glyph() throws InterruptedException{
+
+        forward(0.5,100);
+        setServoPos("servo1",servo1,0,false);
+        setServoPos("servo2",servo2,250,false);
+        backward(0.5,100);
+
+    }
+
+    public void gem() throws InterruptedException{
+
         setMotorPower("gemArm", gemArm, 0.5, true);
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
-        if(gemSensor.red()>127){
-            clockwise(0.1, 200);
-            countclock(0.1,200);
+        boolean blueOnLeft;
+
+        if(isCameraAvailable()){
+
+            Bitmap rgbImage;
+            rgbImage = convertYuvImageToRgb(yuvImage, width, height, 2);
+            blueOnLeft = sensor.blueIsOnLeft(rgbImage);
+
         }else{
+
+            blueOnLeft=Math.random()>0.5;
+
+        }
+        if(blueOnLeft){
+
+            clockwise(0.1, 200);
+            countclock(0.1,200);
+
+        }else{
+
             countclock(0.1,200);
             clockwise(0.1, 200);
+
         }
+
         setMotorPower("gemArm", gemArm, -0.5, true);
         Thread.sleep(500);
         setMotorPower("gemArm", gemArm, 0, true);
-        //TODO: get the picture thing to work
-        if(position>2){
-            if(position%2==0){
-
-            }else{
-
-            }
-        }else{
-            if(position%2==0){
-
-            }else{
-
-            }
-        }
 
     }
+
     public void test()throws InterruptedException{
         forward(0.5,2000);
         backward(0.5,2000);
@@ -83,6 +132,7 @@ Red|  |  |Blue
         countclock(0.5,2000);
 
     }
+
     private void forward(double power, int time) throws InterruptedException{
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,power,true);
@@ -110,6 +160,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void right(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,-power,true);
         setMotorPower("Left Back",leftBack,power,true);
@@ -123,6 +174,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void left(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,power,true);
         setMotorPower("Right Front",rightFront,power,true);
         setMotorPower("Left Back",leftBack,-power,true);
@@ -136,6 +188,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void clockwise(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,-power,true);
         setMotorPower("Right Front",rightFront,-power,true);
         setMotorPower("Left Back",leftBack,-power,true);
@@ -149,6 +202,7 @@ Red|  |  |Blue
         setMotorPower("Right Back",rightBack,0,true);
     }
     private void countclock(double power, int time) throws InterruptedException{
+        if(position<2)power*=-1;
         setMotorPower("Left Front",leftFront,power,true);
         setMotorPower("Right Front",rightFront,power,true);
         setMotorPower("Left Back",leftBack,power,true);
@@ -161,6 +215,7 @@ Red|  |  |Blue
         setMotorPower("Left Back",leftBack,0,true);
         setMotorPower("Right Back",rightBack,0,true);
     }
+
     private void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
         if (tel)telemetry.addData(motorName + " power: ", "" + power);
         if(test) {
@@ -169,7 +224,7 @@ Red|  |  |Blue
             motor.setPower(power);
         }
     }
-    private void setServoPower(String servoName, Servo servo, double power, boolean tel){
+    private void setServoPos(String servoName, Servo servo, double power, boolean tel){
         if(tel)telemetry.addData(servoName+" position: ", ""+power);
         if(test){
 
@@ -177,7 +232,16 @@ Red|  |  |Blue
             servo.setPosition(power);
         }
     }
+
     private void Initialize(){
+        setCameraDownsampling(8);
+
+
+        telemetry.addLine("Wait for camera to finish initializing!");
+        telemetry.update();
+        startCamera();
+        telemetry.addLine("Camera ready!");
+        telemetry.update();
         if(test) { //Motors and Servos get set to null in testing mode so the phone doesn't try and look for them
             leftFront = null;
             rightFront = null;
