@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
+package org.firstinspires.ftc.teamcode.nerds9064;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -130,25 +130,13 @@ public class Teleop extends OpMode{
         }
         else if(dir==3)
         {//left
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
+            setMotorPower("Left Front", leftFront, leftpower, true);
+            setMotorPower("Right Front", rightFront, rightpower, true);
+            setMotorPower("Left Back", leftBack, -leftpower, true);
+            setMotorPower("Right Back", rightBack, -rightpower, true);
         }
-<<<<<<< HEAD
-        else if(gamepad1.left_stick_y <-.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
-=======
         else if(dir==0)
         {//down
->>>>>>> 9ebcb6f777806a07022860a84809575b5ecef698
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
             setMotorPower("Left Back",leftBack,leftpower,true);
@@ -160,20 +148,6 @@ public class Teleop extends OpMode{
             setMotorPower("Right Front",rightFront,rightpower,true);
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.left_trigger > .25)
-        {
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.right_trigger > .25)
-        {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
         }
         else
         {
@@ -208,30 +182,7 @@ public class Teleop extends OpMode{
     //Servo stuff
     public void tobeornottobe ()
     {
-<<<<<<< HEAD
          //False until we find out everything about the servos, which direction they turn, etc.
-            rosencrantz.setPosition(hamlet);
-            guildenstern.setPosition(ophelia);
-            if(gamepad2.b)
-            {
-                hamlet=0;
-                ophelia=1;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
-            }
-            else if(gamepad2.x)
-            {
-                hamlet=.5;
-                ophelia=.5;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
-=======
->>>>>>> 9ebcb6f777806a07022860a84809575b5ecef698
-
         setServoPosition("servo1",rosencrantz,hamlet,true);
         setServoPosition("servo2",guildenstern,ophelia,true);
         if(gamepad2.b)
