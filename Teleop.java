@@ -40,7 +40,7 @@ public class Teleop extends OpMode{
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
     private Servo rosencrantz, guildenstern, gemArm;
     private double hamlet=0.5;
-    private double ophelia=0.5;
+    private double ophelia=0;
     private double leftpower=1.0;
     private double rightpower=1.0;
     private boolean toggle=false;
@@ -202,14 +202,14 @@ public class Teleop extends OpMode{
         if(gamepad2.b)
         {
             hamlet=0;
-            ophelia=1;
+            ophelia=0.5;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
         }
         else if(gamepad2.x)
         {
             hamlet=0.5;
-            ophelia=0.5;
+            ophelia=0;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
 

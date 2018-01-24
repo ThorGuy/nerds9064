@@ -74,7 +74,7 @@ Red|  |  |Blue
 
     public void ForWhenRobotIsBroken() throws InterruptedException{
 
-        forward(0.5,500);
+        forward(0.5,1500);
 
     }
 
