@@ -1,19 +1,18 @@
-package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
+package org.firstinspires.ftc.teamcode.nerds9064;
 
 import android.graphics.Bitmap;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import for_camera_opmodes.LinearOpModeCamera;
 
-
-public class AutoOp extends LinearOpModeCamera{
+public class AutoOp extends LinearOpMode{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
     private Servo servo1, servo2;
     private ColorSensor gemSensor;
-    private GemColorDetector sensor;
+    //private GemColorDetector sensor;
     private final boolean test = false;
     private final short position = 0;
     private final boolean RobotBroken=true;
@@ -94,17 +93,9 @@ Red|  |  |Blue
         setMotorPower("gemArm", gemArm, 0, true);
         boolean blueOnLeft;
 
-        if(isCameraAvailable()){
+        blueOnLeft=Math.random()>0.5;
+        //TODO: Put color sensor code here
 
-            Bitmap rgbImage;
-            rgbImage = convertYuvImageToRgb(yuvImage, width, height, 2);
-            blueOnLeft = sensor.blueIsOnLeft(rgbImage);
-
-        }else{
-
-            blueOnLeft=Math.random()>0.5;
-
-        }
         if(blueOnLeft){
 
             clockwise(0.1, 200);
@@ -234,12 +225,10 @@ Red|  |  |Blue
     }
 
     private void Initialize(){
-        setCameraDownsampling(8);
 
 
         telemetry.addLine("Wait for camera to finish initializing!");
         telemetry.update();
-        startCamera();
         telemetry.addLine("Camera ready!");
         telemetry.update();
         if(test) { //Motors and Servos get set to null in testing mode so the phone doesn't try and look for them
