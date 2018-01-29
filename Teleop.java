@@ -1,5 +1,4 @@
-package org.firstinspires.ftc.teamcode.nerds9064;
-//yay in teamcode now
+package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -16,12 +15,6 @@ import java.util.Arrays;
 
 //Hello it's your boy Jay
     //ALL HAIL THOR
-
-/*TODO:
- - TODO: Make autonomous code (actual code not our own stuff)
- - TODO: Make sure the old autonomous stuff doesn't run
- */
-
 
 public class Teleop extends OpMode{
 
@@ -138,6 +131,7 @@ public class Teleop extends OpMode{
             setMotorPower("Right Back", rightBack, -rightpower, true);
         }
 
+
         else if(gamepad1.left_stick_y <-.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
             setMotorPower("Left Front",leftFront,-leftpower,true);
@@ -160,20 +154,6 @@ public class Teleop extends OpMode{
             setMotorPower("Right Front",rightFront,rightpower,true);
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.left_trigger > .25)
-        {
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
-        }
-        else if(gamepad1.right_trigger > .25)
-        {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
         }
         else
         {
