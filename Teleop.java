@@ -37,7 +37,7 @@ public class Teleop extends OpMode{
     private float encoderMax = 1;
     private float encoderMin = 0;
 
-    private DcMotor leftFront, rightFront, leftBack, rightBack, arm;
+    private DcMotor leftFront, rightFront, leftBack, rightBack, arm, relic;
     private Servo rosencrantz, guildenstern, gemArm;
     private double hamlet=0.5;
     private double ophelia=0;
@@ -73,6 +73,7 @@ public class Teleop extends OpMode{
         wheels();
         tobeornottobe();
         arms();
+        relics ();
 
         if(!testToggle&&gamepad2.x)test=!test;
         testToggle=gamepad2.x;
@@ -135,7 +136,7 @@ public class Teleop extends OpMode{
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,-rightpower,true);
         }
-<<<<<<< HEAD
+
         else if(gamepad1.left_stick_y <-.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
         {
             setMotorPower("Left Front",leftFront,-leftpower,true);
@@ -143,12 +144,10 @@ public class Teleop extends OpMode{
             setMotorPower("Left Back",leftBack,-leftpower,true);
             setMotorPower("Right Back",rightBack,rightpower,true);
         }
-        else if(gamepad1.left_stick_y > .25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
-        {
-=======
+
         else if(dir==0)
         {//down
->>>>>>> 9ebcb6f777806a07022860a84809575b5ecef698
+
             setMotorPower("Left Front",leftFront,leftpower,true);
             setMotorPower("Right Front",rightFront,-rightpower,true);
             setMotorPower("Left Back",leftBack,leftpower,true);
@@ -208,7 +207,7 @@ public class Teleop extends OpMode{
     //Servo stuff
     public void tobeornottobe ()
     {
-<<<<<<< HEAD
+
          //False until we find out everything about the servos, which direction they turn, etc.
             rosencrantz.setPosition(hamlet);
             guildenstern.setPosition(ophelia);
@@ -229,8 +228,7 @@ public class Teleop extends OpMode{
                 guildenstern.setPosition(ophelia);
                 telemetry.addData("Servo1 is at", rosencrantz.getPosition());
                 telemetry.addData("Servo2 is at", guildenstern.getPosition());
-=======
->>>>>>> 9ebcb6f777806a07022860a84809575b5ecef698
+
 
         setServoPosition("servo1",rosencrantz,hamlet,true);
         setServoPosition("servo2",guildenstern,ophelia,true);
@@ -250,7 +248,7 @@ public class Teleop extends OpMode{
 
         }
 
-    }
+    }}
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
@@ -303,7 +301,7 @@ public class Teleop extends OpMode{
             rightBack = hardwareMap.dcMotor.get("rightBack");
 
 
-            //arm = hardwareMap.dcMotor.get("arm");
+
 
 
             rosencrantz=hardwareMap.servo.get("servo1");
@@ -313,6 +311,7 @@ public class Teleop extends OpMode{
 
 
             arm = hardwareMap.dcMotor.get("arm");
+            relic=hardwareMap.dcMotor.get("relic");
 
             //gemArm = hardwareMap.servo.get("gemArm");
 
@@ -321,6 +320,21 @@ public class Teleop extends OpMode{
 
 
         }
+    }
+    public void relics ()
+    {
+        if(gamepad2.dpad_up)
+        {
+            setMotorPower("Relic", relic, .4, true);
+        }
+        else if (gamepad2.dpad_down)
+        {
+            setMotorPower("Relic", relic, -.4, true);
+        }
+        else
+            {
+                setMotorPower("Relic", relic, 0, true);
+            }
     }
     //Converts a degree value to an x and y value on a circle with a radius of 1.
     public double[] DirToXY(double dir){
