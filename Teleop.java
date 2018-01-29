@@ -1,4 +1,5 @@
-package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
+package org.firstinspires.ftc.teamcode.nerds9064;
+//yay in teamcode now
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -131,10 +132,10 @@ public class Teleop extends OpMode{
         }
         else if(dir==3)
         {//left
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
+            setMotorPower("Left Front", leftFront, leftpower, true);
+            setMotorPower("Right Front", rightFront, rightpower, true);
+            setMotorPower("Left Back", leftBack, -leftpower, true);
+            setMotorPower("Right Back", rightBack, -rightpower, true);
         }
 
         else if(gamepad1.left_stick_y <-.25 && (Math.abs(gamepad1.left_stick_y) > Math.abs(gamepad1.left_stick_x)))
