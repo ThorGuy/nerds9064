@@ -25,11 +25,11 @@ Red|  |  |Blue
 
      */
     public void runOpMode() throws InterruptedException{
+        Initialize();
         if(RobotBroken){
             ForWhenRobotIsBroken();
             return;
         }
-        Initialize();
         test();
         noInputAuto();
     }
