@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 
-import android.graphics.Bitmap;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
