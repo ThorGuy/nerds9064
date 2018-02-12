@@ -4,10 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-/**
- * Created by Brennan on 9/20/2017.
- */
-
+//
 
 @TeleOp(name="Motor Test", group="Iterative Opmode")
 
@@ -44,6 +41,7 @@ public class MotorTest extends OpMode {
         setMotorPower("Right Back",rightBack,-power,true);
 
         Thread.sleep(time);
+
 
         setMotorPower("Left Front",leftFront,0,true);
         setMotorPower("Right Front",rightFront,0,true);
