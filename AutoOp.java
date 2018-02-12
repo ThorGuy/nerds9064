@@ -1,5 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
-
+package org.firstinspires.ftc.teamcode.nerds9064;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
