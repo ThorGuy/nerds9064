@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.*;
@@ -15,6 +16,8 @@ import java.util.Arrays;
 
 //Hello it's your boy Jay
     //ALL HAIL THOR
+
+@TeleOp(name="Main Telemetry", group="Iterative Opmode")
 
 public class Teleop extends OpMode{
 

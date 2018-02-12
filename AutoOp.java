@@ -3,10 +3,12 @@ package org.firstinspires.ftc.robotcontroller.external.GitHub.nerds9064;
 import android.graphics.Bitmap;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@TeleOp(name="Main Autonomous", group="Linear Opmode")
 
 public class AutoOp extends LinearOpMode{
     private DcMotor leftFront, leftBack, rightFront, rightBack, arm, gemArm;
