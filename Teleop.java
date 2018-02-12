@@ -295,7 +295,7 @@ public class Teleop extends OpMode{
 
 
             arm = hardwareMap.dcMotor.get("arm");
-            relic=hardwareMap.dcMotor.get("relic");
+            //relic=hardwareMap.dcMotor.get("relic");
 
             //gemArm = hardwareMap.servo.get("gemArm");
 
