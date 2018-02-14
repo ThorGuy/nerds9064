@@ -60,7 +60,7 @@ public class Teleop extends OpMode{
         wheels();
         tobeornottobe();
         arms();
-        relics ();
+        //relics ();
 
         if(!testToggle&&gamepad2.x)test=!test;
         testToggle=gamepad2.x;
@@ -187,25 +187,6 @@ public class Teleop extends OpMode{
     {
 
          //False until we find out everything about the servos, which direction they turn, etc.
-            rosencrantz.setPosition(hamlet);
-            guildenstern.setPosition(ophelia);
-            if(gamepad2.b)
-            {
-                hamlet=0;
-                ophelia=1;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
-            }
-            else if(gamepad2.x)
-            {
-                hamlet=.5;
-                ophelia=.5;
-                rosencrantz.setPosition(hamlet);
-                guildenstern.setPosition(ophelia);
-                telemetry.addData("Servo1 is at", rosencrantz.getPosition());
-                telemetry.addData("Servo2 is at", guildenstern.getPosition());
 
 
         setServoPosition("servo1",rosencrantz,hamlet,true);
@@ -226,7 +207,7 @@ public class Teleop extends OpMode{
 
         }
 
-    }}
+    }
 
     //Won't send power to motors if test mode is on
     public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
