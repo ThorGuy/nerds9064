@@ -22,7 +22,7 @@ import java.util.Arrays;
 //Hello it's your boy Jay
     //ALL HAIL THOR
 
-@TeleOp(name="Main Telemetry", group="Iterative Opmode")
+@TeleOp(name="Main Telemetry Opmode", group="Iterative Opmode")
 
 public class Teleop extends OpMode{
 
