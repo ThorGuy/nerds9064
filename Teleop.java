@@ -95,11 +95,11 @@ public class Teleop extends OpMode{
             dir=2;
         }
 
-        if(gamepad1.y)orientation=0;
+        if(gamepad1.y)orientation=2;
         else
         if(gamepad1.x)orientation=3;
         else
-        if(gamepad1.a)orientation=2;
+        if(gamepad1.a)orientation=0;
         else
         if(gamepad1.b)orientation=1;
 
@@ -194,14 +194,14 @@ public class Teleop extends OpMode{
         if(gamepad2.b)
         {
             hamlet=0;
-            ophelia=0.5;
+            ophelia=1;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
         }
         else if(gamepad2.x)
         {
             hamlet=0.5;
-            ophelia=0;
+            ophelia=0.5;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
 
