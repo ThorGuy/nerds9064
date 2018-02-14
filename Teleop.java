@@ -205,8 +205,8 @@ public class Teleop extends OpMode{
         }
         else if(gamepad2.x)
         {
-            hamlet=0.5;
-            ophelia=0.5;
+            hamlet=0.45;
+            ophelia=0.55;
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
 
