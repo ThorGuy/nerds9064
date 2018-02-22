@@ -35,16 +35,22 @@ public class Teleop extends OpMode{
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, arm, relic;
     private Servo rosencrantz, guildenstern, gemArm;
-    private double hamlet=0.5;
-    private double ophelia=0;
+    private double hamlet=0.55;
+    private double ophelia=0.45;
     private double leftpower=1.0;
     private double rightpower=1.0;
-    private boolean toggle=false;
+    private boolean toggleU=false;
+    private boolean toggleD=false;
     private boolean rottenindenmark=false;
     private boolean autonomous;
     private boolean team; //true = red, false = blue
     private int startPosition;
     private int orientation=0;
+
+    private boolean coast = false;
+    private double coastDivBy = 500;
+    private ArrayList<Double> lastVal = new ArrayList<Double>();
+    private ArrayList<String> mNames = new ArrayList<String>();
 
     public void init(){
 
@@ -69,12 +75,16 @@ public class Teleop extends OpMode{
     public void wheels()
     {
         //Speed toggle
-        if(!toggle&&gamepad1.dpad_up){
-            leftpower=1.5-leftpower;
-            rightpower=1.5-rightpower;
+        if(!toggleU&&gamepad1.dpad_up){
+            leftpower=1.3-leftpower;
+            rightpower=1.3-rightpower;
+        }
+        if(!toggleD&&gamepad1.dpad_down){
+            coast = !coast;
         }
 
-        toggle=gamepad1.dpad_up;
+        toggleU=gamepad1.dpad_up;
+        toggleD=gamepad1.dpad_down;
 
         int dir = -1;
 
@@ -111,54 +121,54 @@ public class Teleop extends OpMode{
         //Movement
         if(dir==1)
         {//right
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
+            setMotorPower("Left Front",leftFront,-leftpower,true,coast);
+            setMotorPower("Right Front",rightFront,-rightpower,true,coast);
+            setMotorPower("Left Back",leftBack,leftpower,true,coast);
+            setMotorPower("Right Back",rightBack,rightpower,true,coast);
         }
         else if(dir==3)
         {//left
-            setMotorPower("Left Front", leftFront, leftpower, true);
-            setMotorPower("Right Front", rightFront, rightpower, true);
-            setMotorPower("Left Back", leftBack, -leftpower, true);
-            setMotorPower("Right Back", rightBack, -rightpower, true);
+            setMotorPower("Left Front", leftFront, leftpower, true,coast);
+            setMotorPower("Right Front", rightFront, rightpower, true,coast);
+            setMotorPower("Left Back", leftBack, -leftpower, true,coast);
+            setMotorPower("Right Back", rightBack, -rightpower, true,coast);
         }
         else if(dir==0)
         {//down
 
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
+            setMotorPower("Left Front",leftFront,leftpower,true,coast);
+            setMotorPower("Right Front",rightFront,-rightpower,true,coast);
+            setMotorPower("Left Back",leftBack,leftpower,true,coast);
+            setMotorPower("Right Back",rightBack,-rightpower,true,coast);
         }
         else if(dir==2)
         {//up
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
+            setMotorPower("Left Front",leftFront,-leftpower,true,coast);
+            setMotorPower("Right Front",rightFront,rightpower,true,coast);
+            setMotorPower("Left Back",leftBack,-leftpower,true,coast);
+            setMotorPower("Right Back",rightBack,rightpower,true,coast);
         }
         else
         if(gamepad1.left_trigger > .25)
         {
-            setMotorPower("Left Front",leftFront,leftpower,true);
-            setMotorPower("Right Front",rightFront,rightpower,true);
-            setMotorPower("Left Back",leftBack,leftpower,true);
-            setMotorPower("Right Back",rightBack,rightpower,true);
+            setMotorPower("Left Front",leftFront,leftpower,true,coast);
+            setMotorPower("Right Front",rightFront,rightpower,true,coast);
+            setMotorPower("Left Back",leftBack,leftpower,true,coast);
+            setMotorPower("Right Back",rightBack,rightpower,true,coast);
         }
         else if(gamepad1.right_trigger > .25)
         {
-            setMotorPower("Left Front",leftFront,-leftpower,true);
-            setMotorPower("Right Front",rightFront,-rightpower,true);
-            setMotorPower("Left Back",leftBack,-leftpower,true);
-            setMotorPower("Right Back",rightBack,-rightpower,true);
+            setMotorPower("Left Front",leftFront,-leftpower,true,coast);
+            setMotorPower("Right Front",rightFront,-rightpower,true,coast);
+            setMotorPower("Left Back",leftBack,-leftpower,true,coast);
+            setMotorPower("Right Back",rightBack,-rightpower,true,coast);
         }
         else
         {
-            setMotorPower("Left Front",leftFront,0,true);
-            setMotorPower("Right Front",rightFront,0,true);
-            setMotorPower("Left Back",leftBack,0,true);
-            setMotorPower("Right Back",rightBack,0,true);
+            setMotorPower("Left Front",leftFront,0,true,coast);
+            setMotorPower("Right Front",rightFront,0,true,coast);
+            setMotorPower("Left Back",leftBack,0,true,coast);
+            setMotorPower("Right Back",rightBack,0,true,coast);
         }
 
 
@@ -169,25 +179,22 @@ public class Teleop extends OpMode{
         double currentEncoder = 0.5;
         if(gamepad2.left_bumper && currentEncoder < encoderMax && gamepad2.left_trigger < .2)
         {
-            setMotorPower("Arm", arm, 1,true);
+            setMotorPower("Arm", arm, 1,true,false);
         }
         else if (gamepad2.left_trigger > 0.2 && currentEncoder > encoderMin && !gamepad2.left_bumper)
         {
 
-            setMotorPower("Arm", arm, -1,true);
+            setMotorPower("Arm", arm, -1,true,false);
         }
         else
         {
-            setMotorPower("Arm", arm, 0,true);
+            setMotorPower("Arm", arm, 0,true,false);
         }
 
     }
     //Servo stuff
     public void tobeornottobe ()
     {
-
-         //False until we find out everything about the servos, which direction they turn, etc.
-
 
         setServoPosition("servo1",rosencrantz,hamlet,true);
         setServoPosition("servo2",guildenstern,ophelia,true);
@@ -198,7 +205,7 @@ public class Teleop extends OpMode{
             setServoPosition("servo1",rosencrantz,hamlet,true);
             setServoPosition("servo2",guildenstern,ophelia,true);
         }
-        else if(gamepad2.x)
+        if(gamepad2.x)
         {
             hamlet=0.55;
             ophelia=0.45;
@@ -206,19 +213,31 @@ public class Teleop extends OpMode{
             setServoPosition("servo2",guildenstern,ophelia,true);
 
         }
-        else if (gamepad2.y)
+        if(gamepad2.y)
         {
-            hamlet=0.25;
-            ophelia=0.75;
-            setServoPosition("servo1", rosencrantz,hamlet, true);
-            setServoPosition("servo2", guildenstern, ophelia, true);
+            hamlet=0.35;
+            ophelia=0.65;
+            setServoPosition("servo1",rosencrantz,hamlet,true);
+            setServoPosition("servo2",guildenstern,ophelia,true);
         }
 
     }
 
     //Won't send power to motors if test mode is on
-    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel) {
+    public void setMotorPower(String motorName, DcMotor motor, double power, boolean tel, boolean cst) {
+        //coast maths
+        if(cst){
+            if(mNames.contains(motorName)){
 
+            }else{
+                mNames.add(motorName);
+                lastVal.add(power);
+            }
+            int i = mNames.indexOf(motorName);
+            power-= (power-lastVal.get(i))/coastDivBy;
+            lastVal.set(i, power);
+        }
+        //test mode catch
         if(test){
 
             if (tel) telemetry.addData(motorName + " power", "" + power);
@@ -291,15 +310,15 @@ public class Teleop extends OpMode{
     {
         if(gamepad2.dpad_up)
         {
-            setMotorPower("Relic", relic, .4, true);
+            setMotorPower("Relic", relic, .4, true,false);
         }
         else if (gamepad2.dpad_down)
         {
-            setMotorPower("Relic", relic, -.4, true);
+            setMotorPower("Relic", relic, -.4, true,false);
         }
         else
             {
-                setMotorPower("Relic", relic, 0, true);
+                setMotorPower("Relic", relic, 0, true,false);
             }
     }
     //Converts a degree value to an x and y value on a circle with a radius of 1.

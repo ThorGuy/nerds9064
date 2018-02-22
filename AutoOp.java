@@ -26,6 +26,7 @@ Red|  |  |Blue
      */
     public void runOpMode() throws InterruptedException{
         Initialize();
+        waitForStart();
         if(RobotBroken){
             ForWhenRobotIsBroken();
             return;
@@ -73,15 +74,23 @@ Red|  |  |Blue
 
     public void ForWhenRobotIsBroken() throws InterruptedException{
 
+        setServoPosition("servo1",servo1,0,true);
+        setServoPosition("servo2",servo2,1,true);
+
         forward(0.5,1500);
+
+        setServoPosition("servo1",servo1,0.55,true);
+        setServoPosition("servo2",servo2,0.45,true);
+
+        backward(0.5,100);
 
     }
 
     public void glyph() throws InterruptedException{
 
         forward(0.5,100);
-        setServoPos("servo1",servo1,0,false);
-        setServoPos("servo2",servo2,250,false);
+        setServoPosition("servo1",servo1,0,false);
+        setServoPosition("servo2",servo2,250,false);
         backward(0.5,100);
 
     }
@@ -215,7 +224,7 @@ Red|  |  |Blue
             motor.setPower(power);
         }
     }
-    private void setServoPos(String servoName, Servo servo, double power, boolean tel){
+    private void setServoPosition(String servoName, Servo servo, double power, boolean tel){
         if(tel)telemetry.addData(servoName+" position: ", ""+power);
         if(test){
 
@@ -249,8 +258,8 @@ Red|  |  |Blue
             servo1=hardwareMap.servo.get("servo1");
             servo2=hardwareMap.servo.get("servo2");
             arm = hardwareMap.dcMotor.get("arm");
-            gemArm = hardwareMap.dcMotor.get("gemArm");
-            gemSensor = hardwareMap.colorSensor.get("gemSensor");
+            //gemArm = hardwareMap.dcMotor.get("gemArm");
+            //gemSensor = hardwareMap.colorSensor.get("gemSensor");
         }
     }
 }
