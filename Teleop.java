@@ -151,17 +151,17 @@ public class Teleop extends OpMode{
         else
         if(gamepad1.left_trigger > .25)
         {
-            setMotorPower("Left Front",leftFront,leftpower,true,coast);
-            setMotorPower("Right Front",rightFront,rightpower,true,coast);
-            setMotorPower("Left Back",leftBack,leftpower,true,coast);
-            setMotorPower("Right Back",rightBack,rightpower,true,coast);
+            setMotorPower("Left Front",leftFront,leftpower/2,true,coast);
+            setMotorPower("Right Front",rightFront,rightpower/2,true,coast);
+            setMotorPower("Left Back",leftBack,leftpower/2,true,coast);
+            setMotorPower("Right Back",rightBack,rightpower/2,true,coast);
         }
         else if(gamepad1.right_trigger > .25)
         {
-            setMotorPower("Left Front",leftFront,-leftpower,true,coast);
-            setMotorPower("Right Front",rightFront,-rightpower,true,coast);
-            setMotorPower("Left Back",leftBack,-leftpower,true,coast);
-            setMotorPower("Right Back",rightBack,-rightpower,true,coast);
+            setMotorPower("Left Front",leftFront,-leftpower/2,true,coast);
+            setMotorPower("Right Front",rightFront,-rightpower/2,true,coast);
+            setMotorPower("Left Back",leftBack,-leftpower/2,true,coast);
+            setMotorPower("Right Back",rightBack,-rightpower/2,true,coast);
         }
         else
         {
