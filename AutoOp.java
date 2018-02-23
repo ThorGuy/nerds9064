@@ -74,15 +74,17 @@ Red|  |  |Blue
 
     public void ForWhenRobotIsBroken() throws InterruptedException{
 
-        setServoPosition("servo1",servo1,0,true);
-        setServoPosition("servo2",servo2,1,true);
-
-        forward(0.5,1500);
-
         setServoPosition("servo1",servo1,0.55,true);
         setServoPosition("servo2",servo2,0.45,true);
 
-        backward(0.5,100);
+        forward(0.5,1500);
+
+        setMotorPower("arm",arm, 0.5, true);
+
+        setServoPosition("servo1",servo1,0,true);
+        setServoPosition("servo2",servo2,1,true);
+
+        backward(0.5,300);
 
     }
 
